@@ -27,11 +27,17 @@ class HomeFragment : Fragment() {
 
         binding.lifecycleOwner = viewLifecycleOwner;
 
-        val horizontalLinearLayoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false);
+        val horizontalLinearLayoutManager1 = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false);
 
-        binding.educationDownloadableBooks.layoutManager = horizontalLinearLayoutManager;
+        binding.educationDownloadableBooks.layoutManager = horizontalLinearLayoutManager1;
 
         binding.educationDownloadableBooks.adapter = DownloadableBookAdapter();
+
+        val horizontalLinearLayoutManager2 = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false);
+
+        binding.fictionDownloadableBooks.layoutManager = horizontalLinearLayoutManager2;
+
+        binding.fictionDownloadableBooks.adapter = DownloadableBookAdapter();
 
         return binding.root;
     }

@@ -21,18 +21,31 @@ class HomeViewModel : ViewModel() {
     val educationBooks: LiveData<List<DownloadableBook>>
         get() = _educationBooks
 
-    private val _status = MutableLiveData<DownloadableBookApiStatus>()
+    private val _educationStatus = MutableLiveData<DownloadableBookApiStatus>()
 
-    val status: LiveData<DownloadableBookApiStatus>
-        get() = _status
+    val educationStatus: LiveData<DownloadableBookApiStatus>
+        get() = _educationStatus
+
+
+
+    private val _fictionBooks = MutableLiveData<List<DownloadableBook>>();
+
+    val fictionBooks: LiveData<List<DownloadableBook>>
+        get() = _fictionBooks
+
+    private val _fictionStatus = MutableLiveData<DownloadableBookApiStatus>()
+
+    val fictionStatus: LiveData<DownloadableBookApiStatus>
+        get() = _fictionStatus
 
     init {
         getEducationBooksFromApi();
+        getFictionBooksFromApi();
     }
 
     fun getEducationBooksFromApi() {
         viewModelScope.launch {
-            _status.value = DownloadableBookApiStatus.LOADING
+            _educationStatus.value = DownloadableBookApiStatus.LOADING
             BookApi.retrofitService.getEducationBooks().enqueue(
                 object: Callback<String> {
                     override fun onResponse(call: Call<String>, response: Response<String>) {
@@ -52,13 +65,48 @@ class HomeViewModel : ViewModel() {
                         }
 
                         _educationBooks.value = values;
-                        _status.value = DownloadableBookApiStatus.DONE;
+                        _educationStatus.value = DownloadableBookApiStatus.DONE;
                     }
 
                     override fun onFailure(call: Call<String>, t: Throwable) {
                         println("Failure" + t.message);
-                        _status.value = DownloadableBookApiStatus.ERROR
+                        _educationStatus.value = DownloadableBookApiStatus.ERROR
                         _educationBooks.value = ArrayList();
+                    }
+                }
+            );
+        }
+    }
+
+    fun getFictionBooksFromApi() {
+        viewModelScope.launch {
+            _fictionStatus.value = DownloadableBookApiStatus.LOADING
+            BookApi.retrofitService.getFictionBooks().enqueue(
+                object: Callback<String> {
+                    override fun onResponse(call: Call<String>, response: Response<String>) {
+
+                        var jsonResponse: String = response.body().toString();
+
+                        val type: Type = Types.newParameterizedType(Map::class.java, String::class.java, DownloadableBook::class.java);
+                        val adapter = BookApi.moshiService()?.adapter<Map<String, DownloadableBook>>(type);
+                        val booksMap: Map<String, DownloadableBook>? = adapter?.fromJson(jsonResponse);
+
+                        val keys: MutableList<String>? = booksMap?.keys?.toMutableList()
+                        val values: List<DownloadableBook>? = booksMap?.values?.toMutableList()
+
+                        for (i in keys?.indices!!) {
+                            keys[i] = keys[i].replace("ISBN:", "");
+                            values?.get(i)?.isbn = keys[i];
+                        }
+
+                        _fictionBooks.value = values;
+                        _fictionStatus.value = DownloadableBookApiStatus.DONE;
+                    }
+
+                    override fun onFailure(call: Call<String>, t: Throwable) {
+                        println("Failure" + t.message);
+                        _fictionStatus.value = DownloadableBookApiStatus.ERROR
+                        _fictionBooks.value = ArrayList();
                     }
                 }
             );

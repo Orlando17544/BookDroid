@@ -861,7 +861,7 @@
             <ImageView
                 android:layout_width="180dp"
                 android:layout_height="311dp"
-                app:apiStatus="@{viewModel.status}" />
+                app:apiStatus="@{viewModel.educationStatus}" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -869,6 +869,18 @@
                 android:text="Fiction"
                 android:textColor="@color/emphasize"
                 android:textSize="20sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/fiction_downloadable_books"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:listData="@{viewModel.fictionBooks}"
+                tools:listitem="@layout/book_item" />
+
+            <ImageView
+                android:layout_width="180dp"
+                android:layout_height="311dp"
+                app:apiStatus="@{viewModel.fictionStatus}" />
 
         </LinearLayout>
 
