@@ -44,15 +44,17 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: List<DownloadableBook>?) 
  */
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
-    imgUrl?.let {
+    if (imgUrl == null) {
+        imgView.setImageResource(R.drawable.ic_baseline_image_not_supported_24);
+    } else {
         val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
         Glide.with(imgView.context)
-                .load(imgUri)
-                .apply(
-                    RequestOptions()
-                        .placeholder(R.drawable.loading_animation)
-                        .error(R.drawable.ic_baseline_broken_image_24))
-                .into(imgView)
+            .load(imgUri)
+            .apply(
+                RequestOptions()
+                    .placeholder(R.drawable.loading_animation)
+                    .error(R.drawable.ic_baseline_broken_image_24))
+            .into(imgView)
     }
 }
 
