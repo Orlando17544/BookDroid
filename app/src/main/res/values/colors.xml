@@ -10,4 +10,11 @@
 
     <color name="select">#0079ca</color>
     <color name="deselect">#5f6267</color>
+
+    <color name="emphasize">#202125</color>
+    <color name="medium">#6a6c71</color>
+    <color name="deemphasize">#767676</color>
+
+    <color name="text_button">#f0ffff</color>
+    <color name="line">#dbdcdf</color>
 </resources>
