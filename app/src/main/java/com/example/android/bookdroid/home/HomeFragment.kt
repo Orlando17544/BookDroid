@@ -29,9 +29,9 @@ class HomeFragment : Fragment() {
 
         val horizontalLinearLayoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false);
 
-        binding.downloadableBooks.layoutManager = horizontalLinearLayoutManager;
+        binding.educationDownloadableBooks.layoutManager = horizontalLinearLayoutManager;
 
-        binding.downloadableBooks.adapter = DownloadableBookAdapter();
+        binding.educationDownloadableBooks.adapter = DownloadableBookAdapter();
 
         return binding.root;
     }

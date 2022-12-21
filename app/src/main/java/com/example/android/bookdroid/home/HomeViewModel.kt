@@ -16,10 +16,10 @@ import java.lang.reflect.Type
 enum class DownloadableBookApiStatus { LOADING, ERROR, DONE }
 
 class HomeViewModel : ViewModel() {
-    private val _artBooks = MutableLiveData<List<DownloadableBook>>();
+    private val _educationBooks = MutableLiveData<List<DownloadableBook>>();
 
-    val artBooks: LiveData<List<DownloadableBook>>
-        get() = _artBooks
+    val educationBooks: LiveData<List<DownloadableBook>>
+        get() = _educationBooks
 
     private val _status = MutableLiveData<DownloadableBookApiStatus>()
 
@@ -27,13 +27,13 @@ class HomeViewModel : ViewModel() {
         get() = _status
 
     init {
-        getArtBooksFromApi();
+        getEducationBooksFromApi();
     }
 
-    fun getArtBooksFromApi() {
+    fun getEducationBooksFromApi() {
         viewModelScope.launch {
             _status.value = DownloadableBookApiStatus.LOADING
-            BookApi.retrofitService.getArtBooks().enqueue(
+            BookApi.retrofitService.getEducationBooks().enqueue(
                 object: Callback<String> {
                     override fun onResponse(call: Call<String>, response: Response<String>) {
 
@@ -51,14 +51,14 @@ class HomeViewModel : ViewModel() {
                             values?.get(i)?.isbn = keys[i];
                         }
 
-                        _artBooks.value = values;
+                        _educationBooks.value = values;
                         _status.value = DownloadableBookApiStatus.DONE;
                     }
 
                     override fun onFailure(call: Call<String>, t: Throwable) {
                         println("Failure" + t.message);
                         _status.value = DownloadableBookApiStatus.ERROR
-                        _artBooks.value = ArrayList();
+                        _educationBooks.value = ArrayList();
                     }
                 }
             );

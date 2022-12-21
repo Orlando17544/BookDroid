@@ -7,6 +7,9 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "book_identifier_table")
 data class BookIdentifier(
     @PrimaryKey(autoGenerate = false)
+    @ColumnInfo(name = "isbn")
+    val isbn: String,
+
     @ColumnInfo(name = "identifier")
     val identifier: String,
 

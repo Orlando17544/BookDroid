@@ -37,7 +37,7 @@ interface BookApiService {
      * HTTP method
      */
     @GET("api/books?bibkeys=ISBN:0201558025,ISBN:160078030X,ISBN:9781600780301&jscmd=data&format=json")
-    fun getArtBooks(): Call<String>
+    fun getEducationBooks(): Call<String>
 }
 
 /**
