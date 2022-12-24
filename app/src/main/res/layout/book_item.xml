@@ -4,7 +4,11 @@
 
     <data>
         <variable
-            name="downloadable_book"
+            name="clickListener"
+            type="com.example.android.bookdroid.home.DownloadableBookListener" />
+
+        <variable
+            name="downloadableBook"
             type="com.example.android.bookdroid.network.DownloadableBook" />
     </data>
 
@@ -12,28 +16,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingHorizontal="15dp">
+        android:paddingHorizontal="15dp"
+        android:onClick="@{() -> clickListener.onClick(downloadableBook)}">
 
         <ImageView
             android:layout_width="180dp"
             android:layout_height="311dp"
-            app:imageUrl="@{downloadable_book.cover.get(&quot;medium&quot;)}"/>
+            app:imageUrl="@{downloadableBook.cover.get(&quot;medium&quot;)}"/>
 
         <TextView
             android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:text="@{downloadable_book.title}"
+            android:text="@{downloadableBook.title}"
             android:maxLines="2"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{`Publish date: ` + downloadable_book.publishDate}"/>
+                android:text="@{downloadableBook.publishDate}"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{`No. pages: ` + String.valueOf(downloadable_book.numberPages)}"/>
+                android:text="@{String.valueOf(downloadableBook.numberPages) + ` pages`}"/>
 
     </LinearLayout>
 </layout>

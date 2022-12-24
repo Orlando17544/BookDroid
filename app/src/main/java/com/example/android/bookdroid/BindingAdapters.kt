@@ -29,7 +29,6 @@ import com.example.android.bookdroid.home.DownloadableBookApiStatus
 import com.example.android.bookdroid.home.DownloadableBookApiStatus.*
 import com.example.android.bookdroid.network.DownloadableBook
 
-
 /**
  * When there is no Mars property data (data is null), hide the [RecyclerView], otherwise show it.
  */

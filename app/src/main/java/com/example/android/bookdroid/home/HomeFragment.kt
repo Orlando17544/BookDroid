@@ -1,5 +1,6 @@
 package com.example.android.bookdroid.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.bookdroid.databinding.FragmentHomeBinding
 import com.example.android.bookdroid.network.DownloadableBook
+
+const val EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE"
 
 class HomeFragment : Fragment() {
 
@@ -27,17 +30,21 @@ class HomeFragment : Fragment() {
 
         binding.lifecycleOwner = viewLifecycleOwner;
 
-        val horizontalLinearLayoutManager1 = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false);
+        val recyclerViews = listOf(
+            binding.educationDownloadableBooks,
+            binding.fictionDownloadableBooks
+        )
 
-        binding.educationDownloadableBooks.layoutManager = horizontalLinearLayoutManager1;
+        for (recyclerView in recyclerViews) {
+            recyclerView.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false);
+            recyclerView.adapter = DownloadableBookAdapter(DownloadableBookListener { downloadableBook ->
+                val intent = Intent(this.context, BookActivity::class.java).apply {
+                    putExtra(EXTRA_MESSAGE, downloadableBook)
+                }
+                startActivity(intent)
+            })
 
-        binding.educationDownloadableBooks.adapter = DownloadableBookAdapter();
-
-        val horizontalLinearLayoutManager2 = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false);
-
-        binding.fictionDownloadableBooks.layoutManager = horizontalLinearLayoutManager2;
-
-        binding.fictionDownloadableBooks.adapter = DownloadableBookAdapter();
+        }
 
         return binding.root;
     }

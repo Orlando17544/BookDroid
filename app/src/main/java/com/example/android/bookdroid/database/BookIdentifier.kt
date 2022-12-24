@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "book_identifier_table")
+@Entity(tableName = "book_id_table")
 data class BookIdentifier(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "isbn")
