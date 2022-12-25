@@ -21,6 +21,8 @@ class BookActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_book)
 
+        binding.lifecycleOwner = this;
+
         val downloadableBook = intent.getParcelableExtra<DownloadableBook>(EXTRA_MESSAGE)
 
         val dataSource = BookDatabase.getInstance(application).bookDatabaseDao;
@@ -33,5 +35,7 @@ class BookActivity : AppCompatActivity() {
                 it
             ).get(BookViewModel::class.java)
         }!!
+
+        binding.viewModel = viewModel;
     }
 }
