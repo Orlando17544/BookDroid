@@ -11,7 +11,7 @@ interface BookDatabaseDao {
     fun insertBookIdentifier(bookIdentifier: BookIdentifier)
 
     @Query("SELECT identifier FROM book_id_table WHERE isbn = :isbn")
-    fun getBookIdentifierByIsbn(isbn: String): String;
+    suspend fun getBookIdentifierByIsbn(isbn: String): String;
 
     /*
     @Query("SELECT * FROM book_identifier_table WHERE category = :category")

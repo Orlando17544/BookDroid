@@ -2,10 +2,17 @@ package com.example.android.bookdroid
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import okhttp3.OkHttpClient
+import okhttp3.ResponseBody
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Streaming
+import retrofit2.http.Url
+import java.util.concurrent.TimeUnit
+
 
 private const val BASE_URL = "https://openlibrary.org/"
 
@@ -17,6 +24,12 @@ private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
 
+var okHttpClient = OkHttpClient.Builder()
+    .connectTimeout(1, TimeUnit.MINUTES)
+    .readTimeout(30, TimeUnit.SECONDS)
+    .writeTimeout(15, TimeUnit.SECONDS)
+    .build()
+
 /**
  * Use the Retrofit builder to build a retrofit object using a Moshi converter with our Moshi
  * object.
@@ -24,6 +37,7 @@ private val moshi = Moshi.Builder()
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(ScalarsConverterFactory.create())
     .baseUrl(BASE_URL)
+    .client(okHttpClient)
     .build()
 
 /**
@@ -104,6 +118,10 @@ interface BookApiService {
 
     @GET("api/books?bibkeys=SBN:9781975949433,ISBN:9780397321650,ISBN:9780140016987,ISBN:0001382012,ISBN:9780307207395,ISBN:9780808538165,ISBN:1591127963,ISBN:9781931514002,ISBN:9780746048054,ISBN:9788804491590,ISBN:9788700382817,ISBN:0786866268,ISBN:1447921364,ISBN:9781406263213,ISBN:9780802134974,ISBN:0415116465,ISBN:0606304886,ISBN:9780062252753,ISBN:0807830895,ISBN:9780900821349&jscmd=data&format=json")
     fun getLifeStyleBooks(): Call<String>
+
+    @Streaming
+    @GET
+    suspend fun downloadFile(@Url fileUrl:String): Response<ResponseBody>
 }
 
 /**

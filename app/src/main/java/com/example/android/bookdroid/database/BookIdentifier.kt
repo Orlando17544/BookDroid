@@ -7,12 +7,12 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "book_id_table")
 data class BookIdentifier(
     @PrimaryKey(autoGenerate = false)
+    @ColumnInfo(name = "id")
+    var id: Long = 0,
+
     @ColumnInfo(name = "isbn")
-    val isbn: String,
+    var isbn: Long = 0,
 
     @ColumnInfo(name = "identifier")
-    val identifier: String,
-
-    @ColumnInfo(name = "category")
-    val category: String
+    var identifier: String = "",
 )

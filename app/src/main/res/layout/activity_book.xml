@@ -222,6 +222,7 @@
                 android:layout_marginTop="50dp"
                 android:text="Download"
                 android:backgroundTint="@color/select"
+                android:onClick="@{() -> viewModel.downloadBook()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider2" />

@@ -27,7 +27,7 @@ class BookActivity : AppCompatActivity() {
 
         val dataSource = BookDatabase.getInstance(application).bookDatabaseDao;
 
-        val viewModelFactory = downloadableBook?.let { BookViewModelFactory(it, dataSource) }
+        val viewModelFactory = downloadableBook?.let { BookViewModelFactory(it, dataSource, application) }
 
         // Get a reference to the ViewModel associated with this fragment.
         viewModel = viewModelFactory?.let {

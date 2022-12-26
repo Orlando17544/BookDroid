@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.android.bookdroid.database.BookDatabase
 import com.example.android.bookdroid.databinding.FragmentHomeBinding
 import com.example.android.bookdroid.network.DownloadableBook
 
