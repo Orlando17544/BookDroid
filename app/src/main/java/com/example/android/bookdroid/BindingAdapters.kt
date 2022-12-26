@@ -19,6 +19,7 @@ package com.example.android.bookdroid
 
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -82,4 +83,14 @@ fun bindStatus(statusImageView: ImageView, status: DownloadableBookApiStatus?) {
             statusImageView.setImageResource(R.drawable.loading_animation)
         }
     }
+}
+
+@BindingAdapter("listLinks")
+fun bindText(txtView: TextView, listMaps: List<Map<String, String>>?) {
+        if (listMaps != null) {
+            for (listMap in listMaps) {
+                txtView.append(listMap.get("title") + ": \n");
+                txtView.append(listMap.get("url") + "\n");
+            }
+        }
 }

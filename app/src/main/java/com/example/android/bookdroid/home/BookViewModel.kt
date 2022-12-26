@@ -6,6 +6,4 @@ import com.example.android.bookdroid.network.DownloadableBook
 
 class BookViewModel(val downloadableBook: DownloadableBook,
                     val database: BookDatabaseDao,) : ViewModel() {
-
-
 }
