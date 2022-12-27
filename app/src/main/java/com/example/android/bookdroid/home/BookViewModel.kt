@@ -4,10 +4,9 @@ import android.app.Application
 import android.content.Context
 import android.content.ContextWrapper
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.android.bookdroid.BookApi
+import com.example.android.bookdroid.database.Book
 import com.example.android.bookdroid.database.BookDatabaseDao
 import com.example.android.bookdroid.network.DownloadableBook
 import kotlinx.coroutines.Dispatchers
@@ -23,16 +22,33 @@ class BookViewModel(val downloadableBook: DownloadableBook,
                     application: Application) : AndroidViewModel(application) {
     lateinit var identifier: String;
 
+    private var _downloaded = MutableLiveData<Boolean>();
+
+    val downloaded: LiveData<Boolean>
+        get() = _downloaded
+
     init {
-        getIdentifier();
+        viewModelScope.launch {
+            getIdentifier();
+            checkBook();
+        }
     }
 
-    fun getIdentifier() {
-        viewModelScope.launch {
-                downloadableBook.isbn?.let {
-                    println("Isbn es: " + it);
-                    identifier = database.getBookIdentifierByIsbn(it) };
-        }
+    suspend fun getIdentifier() {
+        downloadableBook.isbn?.let {
+            identifier = database.getBookIdentifierByIsbn(it) };
+    }
+
+    suspend fun checkBook() {
+        downloadableBook.isbn?.let {
+            val book = database.getBookByIsbn(it);
+
+            if (book == null) {
+                _downloaded.value = false;
+            } else {
+                _downloaded.value = true;
+            }
+        };
     }
 
     fun downloadBook() {
@@ -40,6 +56,8 @@ class BookViewModel(val downloadableBook: DownloadableBook,
             withContext(Dispatchers.IO) {
                 val responseBody = BookApi.retrofitService.downloadFile("https://archive.org/download/" + identifier + "/" + identifier + ".pdf").body();
                 val filePath = generateFilePath(downloadableBook)
+                insertBook()
+                _downloaded.postValue(true);
                 saveFile(responseBody, filePath)
             }
         }
@@ -52,29 +70,40 @@ class BookViewModel(val downloadableBook: DownloadableBook,
         return File(directory, downloadableBook.title + ".pdf").absolutePath
     }
 
-    fun saveFile(body: ResponseBody?, filePath: String) {
-        if (body==null)
-            return
-        var input: InputStream? = null
-        try {
-            input = body.byteStream()
-            //val file = File(getCacheDir(), "cacheFileAppeal.srl")
-            val fos = FileOutputStream(filePath)
-            fos.use { output ->
-                val buffer = ByteArray(4 * 1024) // or other buffer size
-                var read: Int
-                while (input.read(buffer).also { read = it } != -1) {
-                    output.write(buffer, 0, read)
+    suspend fun saveFile(body: ResponseBody?, filePath: String) {
+        withContext(Dispatchers.IO) {
+            body?.let {
+                var input: InputStream? = null
+                try {
+                    input = body.byteStream()
+                    //val file = File(getCacheDir(), "cacheFileAppeal.srl")
+                    val fos = FileOutputStream(filePath)
+                    fos.use { output ->
+                        val buffer = ByteArray(4 * 1024) // or other buffer size
+                        var read: Int
+                        while (input.read(buffer).also { read = it } != -1) {
+                            output.write(buffer, 0, read)
+                        }
+                        output.flush()
+                    }
+                } catch (e:Exception) {
+                    Log.e("saveFile",e.toString())
                 }
-                output.flush()
+                finally {
+                    input?.close()
+                }
             }
-            return
-        }catch (e:Exception){
-            Log.e("saveFile",e.toString())
         }
-        finally {
-            input?.close()
-        }
-        return
+    }
+
+    suspend fun insertBook() {
+        val newBook = Book();
+
+        newBook.isbn = downloadableBook.isbn!!;
+        newBook.identifier = identifier;
+        newBook.cover = downloadableBook.cover?.get("medium");
+        newBook.title = downloadableBook.title;
+        newBook.author = downloadableBook.authors?.get(0)?.get("name");
+        database.insertBook(newBook);
     }
 }

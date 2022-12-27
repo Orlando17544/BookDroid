@@ -220,7 +220,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="50dp"
-                android:text="Download"
+                android:text="@{viewModel.downloaded ? &quot;Open&quot; : &quot;Download&quot;}"
                 android:backgroundTint="@color/select"
                 android:onClick="@{() -> viewModel.downloadBook()}"
                 app:layout_constraintEnd_toEndOf="parent"

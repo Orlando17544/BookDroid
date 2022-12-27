@@ -8,10 +8,13 @@ import androidx.room.Query
 @Dao
 interface BookDatabaseDao {
     @Insert
-    fun insertBookIdentifier(bookIdentifier: BookIdentifier)
+    suspend fun insertBook(book: Book)
 
     @Query("SELECT identifier FROM book_id_table WHERE isbn = :isbn")
-    suspend fun getBookIdentifierByIsbn(isbn: String): String;
+    suspend fun getBookIdentifierByIsbn(isbn: Long): String;
+
+    @Query("SELECT * FROM book_table WHERE isbn = :isbn")
+    suspend fun getBookByIsbn(isbn: Long): Book;
 
     /*
     @Query("SELECT * FROM book_identifier_table WHERE category = :category")

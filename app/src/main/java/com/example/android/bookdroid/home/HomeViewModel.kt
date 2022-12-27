@@ -61,7 +61,7 @@ class HomeViewModel : ViewModel() {
 
                         for (i in keys?.indices!!) {
                             keys[i] = keys[i].replace("ISBN:", "");
-                            values?.get(i)?.isbn = keys[i];
+                            values?.get(i)?.isbn = keys[i].toLong();
                         }
 
                         _educationBooks.value = values;
@@ -96,7 +96,7 @@ class HomeViewModel : ViewModel() {
 
                         for (i in keys?.indices!!) {
                             keys[i] = keys[i].replace("ISBN:", "");
-                            values?.get(i)?.isbn = keys[i];
+                            values?.get(i)?.isbn = keys[i].toLong();
                         }
 
                         _fictionBooks.value = values;
