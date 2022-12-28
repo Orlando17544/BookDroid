@@ -17,15 +17,21 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
 
+
 class BookViewModel(val downloadableBook: DownloadableBook,
                     val database: BookDatabaseDao,
                     application: Application) : AndroidViewModel(application) {
     lateinit var identifier: String;
 
-    private var _downloaded = MutableLiveData<Boolean>();
+    private var _downloadState = MutableLiveData<String>();
 
-    val downloaded: LiveData<Boolean>
-        get() = _downloaded
+    val downloadState: LiveData<String>
+        get() = _downloadState
+
+    private var _book = MutableLiveData<Book>();
+
+    val book: LiveData<Book>
+        get() = _book
 
     init {
         viewModelScope.launch {
@@ -44,30 +50,34 @@ class BookViewModel(val downloadableBook: DownloadableBook,
             val book = database.getBookByIsbn(it);
 
             if (book == null) {
-                _downloaded.value = false;
+                _downloadState.value = "not_downloaded";
             } else {
-                _downloaded.value = true;
+                _downloadState.value = "downloaded";
             }
         };
     }
 
     fun downloadBook() {
+        _downloadState.value = "downloading"
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 val responseBody = BookApi.retrofitService.downloadFile("https://archive.org/download/" + identifier + "/" + identifier + ".pdf").body();
-                val filePath = generateFilePath(downloadableBook)
-                insertBook()
-                _downloaded.postValue(true);
-                saveFile(responseBody, filePath)
+                if (responseBody != null) {
+                    val filePath = generateFilePath(downloadableBook)
+                    saveFile(responseBody, filePath)
+                    insertBook(filePath)
+                    _downloadState.postValue("downloaded");
+                } else {
+                    _downloadState.postValue("unavailable")
+                }
             }
         }
     }
 
     fun generateFilePath(downloadableBook: DownloadableBook): String {
         val cw = ContextWrapper(getApplication<Application?>().applicationContext)
-        // path to /data/data/yourapp/app_data/songs
-        val directory = cw.getDir("books", Context.MODE_PRIVATE)
-        return File(directory, downloadableBook.title + ".pdf").absolutePath
+        val dir: File = File(getApplication<Application>().getFilesDir().absolutePath, downloadableBook.title)
+        return dir.absolutePath;
     }
 
     suspend fun saveFile(body: ResponseBody?, filePath: String) {
@@ -96,14 +106,23 @@ class BookViewModel(val downloadableBook: DownloadableBook,
         }
     }
 
-    suspend fun insertBook() {
+    suspend fun insertBook(filePath: String) {
         val newBook = Book();
 
+        newBook.path = filePath;
         newBook.isbn = downloadableBook.isbn!!;
         newBook.identifier = identifier;
         newBook.cover = downloadableBook.cover?.get("medium");
         newBook.title = downloadableBook.title;
         newBook.author = downloadableBook.authors?.get(0)?.get("name");
         database.insertBook(newBook);
+    }
+
+    fun openBook() {
+        viewModelScope.launch {
+            downloadableBook.isbn?.let {
+                _book.value = database.getBookByIsbn(it)
+            }
+        }
     }
 }

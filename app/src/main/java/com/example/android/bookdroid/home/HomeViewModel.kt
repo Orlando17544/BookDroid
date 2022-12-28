@@ -26,8 +26,6 @@ class HomeViewModel : ViewModel() {
     val educationStatus: LiveData<DownloadableBookApiStatus>
         get() = _educationStatus
 
-
-
     private val _fictionBooks = MutableLiveData<List<DownloadableBook>>();
 
     val fictionBooks: LiveData<List<DownloadableBook>>

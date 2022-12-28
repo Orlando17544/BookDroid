@@ -220,9 +220,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="50dp"
-                android:text="@{viewModel.downloaded ? &quot;Open&quot; : &quot;Download&quot;}"
+                android:text="@{viewModel.downloadState == &quot;downloaded&quot; ? &quot;Open&quot; : viewModel.downloadState == &quot;downloading&quot; ? &quot;Downloading&quot; : viewModel.downloadState == &quot;unavailable&quot; ? &quot;Unavailable&quot; : &quot;Download&quot;}"
                 android:backgroundTint="@color/select"
-                android:onClick="@{() -> viewModel.downloadBook()}"
+                android:onClick="@{() -> viewModel.downloadState == &quot;downloaded&quot;  ? viewModel.openBook() : viewModel.downloadBook()}"
+                android:enabled="@{viewModel.downloadState == &quot;downloading&quot; ? false : viewModel.downloadState == &quot;unavailable&quot; ? false : true}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider2" />

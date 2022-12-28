@@ -12,6 +12,9 @@ data class Book (
     @ColumnInfo(name = "id")
     var id: Long = 0,
 
+    @ColumnInfo(name = "path")
+    var path: String = "",
+
     @ColumnInfo(name = "isbn")
     var isbn: Long = 0,
 
