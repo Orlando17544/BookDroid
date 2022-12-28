@@ -18,21 +18,26 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginStart="15dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Are you ready to read?"
                 android:textColor="@color/emphasize"
-                android:textSize="20sp" />
+                android:textSize="@dimen/title"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="100dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Start reading a book from your library"
                 android:textColor="@color/deemphasize"
-                android:textSize="15sp" />
+                android:textSize="@dimen/normal"
+                android:layout_gravity="center_horizontal"
+                android:paddingVertical="15dp"/>
 
             <Button
                 android:layout_width="wrap_content"
@@ -40,14 +45,17 @@
                 android:padding="15dp"
                 android:text="Go to the library"
                 android:textColor="@color/text_button"
-                android:textSize="15sp" />
+                android:textSize="@dimen/normal"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="100dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Explore books"
                 android:textColor="@color/emphasize"
-                android:textSize="20sp" />
+                android:textSize="@dimen/subtitle"
+                android:paddingVertical="15dp"/>
 
             <HorizontalScrollView
                 android:layout_width="wrap_content"
@@ -83,9 +91,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="25dp"
-                                android:text="Prueba"
+                                android:text="Art"
                                 android:textColor="@color/medium"
-                                android:textSize="15sp"
+                                android:textSize="@dimen/normal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -117,9 +125,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="25dp"
-                                android:text="Prueba"
+                                android:text="Fun"
                                 android:textColor="@color/medium"
-                                android:textSize="15sp"
+                                android:textSize="@dimen/normal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -151,9 +159,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="25dp"
-                                android:text="Prueba"
+                                android:text="Self help"
                                 android:textColor="@color/medium"
-                                android:textSize="15sp"
+                                android:textSize="@dimen/normal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -185,9 +193,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="25dp"
-                                android:text="Prueba"
+                                android:text="Biography"
                                 android:textColor="@color/medium"
-                                android:textSize="15sp"
+                                android:textSize="@dimen/normal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -219,9 +227,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="25dp"
-                                android:text="Prueba"
+                                android:text="Memories"
                                 android:textColor="@color/medium"
-                                android:textSize="15sp"
+                                android:textSize="@dimen/normal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -253,9 +261,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="25dp"
-                                android:text="Prueba"
+                                android:text="Science fiction"
                                 android:textColor="@color/medium"
-                                android:textSize="15sp"
+                                android:textSize="@dimen/normal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -287,9 +295,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="25dp"
-                                android:text="Prueba"
+                                android:text="Fantasy"
                                 android:textColor="@color/medium"
-                                android:textSize="15sp"
+                                android:textSize="@dimen/normal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -321,9 +329,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="25dp"
-                                android:text="Prueba"
+                                android:text="Education"
                                 android:textColor="@color/medium"
-                                android:textSize="15sp"
+                                android:textSize="@dimen/normal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -355,9 +363,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="25dp"
-                                android:text="Prueba"
+                                android:text="Fiction"
                                 android:textColor="@color/medium"
-                                android:textSize="15sp"
+                                android:textSize="@dimen/normal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -389,9 +397,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="25dp"
-                                android:text="Prueba"
+                                android:text="Literature"
                                 android:textColor="@color/medium"
-                                android:textSize="15sp"
+                                android:textSize="@dimen/normal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -423,9 +431,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="25dp"
-                                android:text="Prueba"
+                                android:text="Finance"
                                 android:textColor="@color/medium"
-                                android:textSize="15sp"
+                                android:textSize="@dimen/normal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -457,9 +465,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="25dp"
-                                android:text="Prueba"
+                                android:text="Investment"
                                 android:textColor="@color/medium"
-                                android:textSize="15sp"
+                                android:textSize="@dimen/normal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -491,9 +499,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="25dp"
-                                android:text="Prueba"
+                                android:text="History"
                                 android:textColor="@color/medium"
-                                android:textSize="15sp"
+                                android:textSize="@dimen/normal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -525,9 +533,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="25dp"
-                                android:text="Prueba"
+                                android:text="Computing"
                                 android:textColor="@color/medium"
-                                android:textSize="15sp"
+                                android:textSize="@dimen/normal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -559,9 +567,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="25dp"
-                                android:text="Prueba"
+                                android:text="Technology"
                                 android:textColor="@color/medium"
-                                android:textSize="15sp"
+                                android:textSize="@dimen/normal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -593,9 +601,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="25dp"
-                                android:text="Prueba"
+                                android:text="Children's books"
                                 android:textColor="@color/medium"
-                                android:textSize="15sp"
+                                android:textSize="@dimen/normal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -627,9 +635,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="25dp"
-                                android:text="Prueba"
+                                android:text="Mystery"
                                 android:textColor="@color/medium"
-                                android:textSize="15sp"
+                                android:textSize="@dimen/normal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -661,9 +669,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="25dp"
-                                android:text="Prueba"
+                                android:text="Suspense"
                                 android:textColor="@color/medium"
-                                android:textSize="15sp"
+                                android:textSize="@dimen/normal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -695,9 +703,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="25dp"
-                                android:text="Prueba"
+                                android:text="Romance novel"
                                 android:textColor="@color/medium"
-                                android:textSize="15sp"
+                                android:textSize="@dimen/normal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -729,9 +737,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="25dp"
-                                android:text="Prueba"
+                                android:text="Religion"
                                 android:textColor="@color/medium"
-                                android:textSize="15sp"
+                                android:textSize="@dimen/normal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -763,9 +771,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="25dp"
-                                android:text="Prueba"
+                                android:text="Spirituality"
                                 android:textColor="@color/medium"
-                                android:textSize="15sp"
+                                android:textSize="@dimen/normal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -797,9 +805,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="25dp"
-                                android:text="Prueba"
+                                android:text="Health"
                                 android:textColor="@color/medium"
-                                android:textSize="15sp"
+                                android:textSize="@dimen/normal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -831,9 +839,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="25dp"
-                                android:text="Prueba"
+                                android:text="Lifestyle"
                                 android:textColor="@color/medium"
-                                android:textSize="15sp"
+                                android:textSize="@dimen/normal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -849,7 +857,8 @@
                 android:layout_height="wrap_content"
                 android:text="Education"
                 android:textColor="@color/emphasize"
-                android:textSize="20sp" />
+                android:textSize="@dimen/subtitle"
+                android:paddingVertical="15dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/education_downloadable_books"
@@ -868,7 +877,8 @@
                 android:layout_height="wrap_content"
                 android:text="Fiction"
                 android:textColor="@color/emphasize"
-                android:textSize="20sp" />
+                android:textSize="@dimen/subtitle"
+                android:paddingVertical="15dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/fiction_downloadable_books"
@@ -881,6 +891,26 @@
                 android:layout_width="180dp"
                 android:layout_height="311dp"
                 app:apiStatus="@{viewModel.fictionStatus}" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Art"
+                android:textColor="@color/emphasize"
+                android:textSize="@dimen/subtitle"
+                android:paddingVertical="15dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/art_downloadable_books"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:listData="@{viewModel.artBooks}"
+                tools:listitem="@layout/book_item" />
+
+            <ImageView
+                android:layout_width="180dp"
+                android:layout_height="311dp"
+                app:apiStatus="@{viewModel.artStatus}" />
 
         </LinearLayout>
 

@@ -33,7 +33,8 @@ class HomeFragment : Fragment() {
 
         val recyclerViews = listOf(
             binding.educationDownloadableBooks,
-            binding.fictionDownloadableBooks
+            binding.fictionDownloadableBooks,
+            binding.artDownloadableBooks
         )
 
         for (recyclerView in recyclerViews) {

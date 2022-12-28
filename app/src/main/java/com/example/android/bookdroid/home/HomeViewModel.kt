@@ -36,9 +36,20 @@ class HomeViewModel : ViewModel() {
     val fictionStatus: LiveData<DownloadableBookApiStatus>
         get() = _fictionStatus
 
+    private val _artBooks = MutableLiveData<List<DownloadableBook>>();
+
+    val artBooks: LiveData<List<DownloadableBook>>
+        get() = _artBooks
+
+    private val _artStatus = MutableLiveData<DownloadableBookApiStatus>()
+
+    val artStatus: LiveData<DownloadableBookApiStatus>
+        get() = _artStatus
+
     init {
         getEducationBooksFromApi();
         getFictionBooksFromApi();
+        getArtBooksFromApi();
     }
 
     fun getEducationBooksFromApi() {
@@ -105,6 +116,41 @@ class HomeViewModel : ViewModel() {
                         println("Failure" + t.message);
                         _fictionStatus.value = DownloadableBookApiStatus.ERROR
                         _fictionBooks.value = ArrayList();
+                    }
+                }
+            );
+        }
+    }
+
+    fun getArtBooksFromApi() {
+        viewModelScope.launch {
+            _artStatus.value = DownloadableBookApiStatus.LOADING
+            BookApi.retrofitService.getArtBooks().enqueue(
+                object: Callback<String> {
+                    override fun onResponse(call: Call<String>, response: Response<String>) {
+
+                        var jsonResponse: String = response.body().toString();
+
+                        val type: Type = Types.newParameterizedType(Map::class.java, String::class.java, DownloadableBook::class.java);
+                        val adapter = BookApi.moshiService()?.adapter<Map<String, DownloadableBook>>(type);
+                        val booksMap: Map<String, DownloadableBook>? = adapter?.fromJson(jsonResponse);
+
+                        val keys: MutableList<String>? = booksMap?.keys?.toMutableList()
+                        val values: List<DownloadableBook>? = booksMap?.values?.toMutableList()
+
+                        for (i in keys?.indices!!) {
+                            keys[i] = keys[i].replace("ISBN:", "");
+                            values?.get(i)?.isbn = keys[i].toLong();
+                        }
+
+                        _artBooks.value = values;
+                        _artStatus.value = DownloadableBookApiStatus.DONE;
+                    }
+
+                    override fun onFailure(call: Call<String>, t: Throwable) {
+                        println("Failure" + t.message);
+                        _artStatus.value = DownloadableBookApiStatus.ERROR
+                        _artBooks.value = ArrayList();
                     }
                 }
             );
