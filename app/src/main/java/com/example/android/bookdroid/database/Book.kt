@@ -1,11 +1,15 @@
 package com.example.android.bookdroid.database
 
+import android.os.Parcel
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.android.bookdroid.network.DownloadableBook
 import com.squareup.moshi.Json
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 @Entity(tableName = "book_table")
 data class Book (
     @PrimaryKey(autoGenerate = true)
@@ -29,4 +33,4 @@ data class Book (
 
     @ColumnInfo(name = "author")
     var author: String? = "",
-)
+) : Parcelable

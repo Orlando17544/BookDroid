@@ -75,9 +75,11 @@ class BookViewModel(val downloadableBook: DownloadableBook,
     }
 
     fun generateFilePath(downloadableBook: DownloadableBook): String {
-        val cw = ContextWrapper(getApplication<Application?>().applicationContext)
-        val dir: File = File(getApplication<Application>().getFilesDir().absolutePath, downloadableBook.title)
-        return dir.absolutePath;
+        downloadableBook.title?.let {
+            val dir: File = File(getApplication<Application>().getFilesDir().absolutePath, downloadableBook.title)
+            return dir.absolutePath;
+        }
+        return "";
     }
 
     suspend fun saveFile(body: ResponseBody?, filePath: String) {

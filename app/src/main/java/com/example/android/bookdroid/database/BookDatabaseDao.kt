@@ -14,7 +14,7 @@ interface BookDatabaseDao {
     suspend fun getBookIdentifierByIsbn(isbn: Long): String;
 
     @Query("SELECT * FROM book_table WHERE isbn = :isbn")
-    suspend fun getBookByIsbn(isbn: Long): Book;
+    suspend fun getBookByIsbn(isbn: Long): Book?;
 
     /*
     @Query("SELECT * FROM book_identifier_table WHERE category = :category")

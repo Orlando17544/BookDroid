@@ -28,7 +28,7 @@ class BookActivity : AppCompatActivity() {
 
         binding.lifecycleOwner = this;
 
-        val downloadableBook = intent.getParcelableExtra<DownloadableBook>(EXTRA_MESSAGE)
+        val downloadableBook = intent.getParcelableExtra<DownloadableBook>(EXTRA_MESSAGE_DOWNLOADABLE_BOOK)
 
         val dataSource = BookDatabase.getInstance(application).bookDatabaseDao;
 
@@ -42,7 +42,6 @@ class BookActivity : AppCompatActivity() {
         }!!
 
         binding.viewModel = viewModel;
-
 
         viewModel.book.observe(this, Observer { book ->
             //val uri = Uri.fromFile(File(book.path))

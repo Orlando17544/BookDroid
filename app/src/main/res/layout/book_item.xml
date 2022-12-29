@@ -22,6 +22,7 @@
         <ImageView
             android:layout_width="180dp"
             android:layout_height="311dp"
+            android:scaleType="centerCrop"
             app:imageUrl="@{downloadableBook.cover.get(&quot;medium&quot;)}"/>
 
         <TextView

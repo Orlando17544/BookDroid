@@ -8,6 +8,13 @@
         <variable
             name="viewModel"
             type="com.example.android.bookdroid.home.HomeViewModel" />
+
+        <import type="java.util.List"/>
+        <import type="com.example.android.bookdroid.network.DownloadableBook"/>
+        <variable
+            name="list"
+            type="List&lt;DownloadableBook>" />
+
     </data>
 
     <ScrollView
@@ -72,7 +79,8 @@
                         android:layout_marginHorizontal="5dp"
                         app:cardElevation="0dp"
                         app:strokeColor="@color/line"
-                        app:strokeWidth="2dp">
+                        app:strokeWidth="2dp"
+                        android:onClick="@{() -> viewModel.displayCategoryBooks(viewModel.artBooks, &quot;art&quot;)}">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -106,7 +114,8 @@
                         android:layout_marginHorizontal="5dp"
                         app:cardElevation="0dp"
                         app:strokeColor="@color/line"
-                        app:strokeWidth="2dp">
+                        app:strokeWidth="2dp"
+                        android:onClick="@{() -> viewModel.displayCategoryBooks(list, &quot;fun&quot;)}">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -128,7 +137,7 @@
                                 android:text="Fun"
                                 android:textColor="@color/medium"
                                 android:textSize="@dimen/normal"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"/>
 
                         </LinearLayout>
 
@@ -140,7 +149,8 @@
                         android:layout_marginHorizontal="5dp"
                         app:cardElevation="0dp"
                         app:strokeColor="@color/line"
-                        app:strokeWidth="2dp">
+                        app:strokeWidth="2dp"
+                        android:onClick="@{() -> viewModel.displayCategoryBooks(list, &quot;self help&quot;)}">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -174,7 +184,8 @@
                         android:layout_marginHorizontal="5dp"
                         app:cardElevation="0dp"
                         app:strokeColor="@color/line"
-                        app:strokeWidth="2dp">
+                        app:strokeWidth="2dp"
+                        android:onClick="@{() -> viewModel.displayCategoryBooks(list, &quot;biography&quot;)}">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -208,7 +219,8 @@
                         android:layout_marginHorizontal="5dp"
                         app:cardElevation="0dp"
                         app:strokeColor="@color/line"
-                        app:strokeWidth="2dp">
+                        app:strokeWidth="2dp"
+                        android:onClick="@{() -> viewModel.displayCategoryBooks(list, &quot;memories&quot;)}">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -242,7 +254,8 @@
                         android:layout_marginHorizontal="5dp"
                         app:cardElevation="0dp"
                         app:strokeColor="@color/line"
-                        app:strokeWidth="2dp">
+                        app:strokeWidth="2dp"
+                        android:onClick="@{() -> viewModel.displayCategoryBooks(list, &quot;science fiction&quot;)}">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -276,7 +289,8 @@
                         android:layout_marginHorizontal="5dp"
                         app:cardElevation="0dp"
                         app:strokeColor="@color/line"
-                        app:strokeWidth="2dp">
+                        app:strokeWidth="2dp"
+                        android:onClick="@{() -> viewModel.displayCategoryBooks(list, &quot;fantasy&quot;)}">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -310,7 +324,8 @@
                         android:layout_marginHorizontal="5dp"
                         app:cardElevation="0dp"
                         app:strokeColor="@color/line"
-                        app:strokeWidth="2dp">
+                        app:strokeWidth="2dp"
+                        android:onClick="@{() -> viewModel.displayCategoryBooks(viewModel.educationBooks, &quot;education&quot;)}">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -344,7 +359,8 @@
                         android:layout_marginHorizontal="5dp"
                         app:cardElevation="0dp"
                         app:strokeColor="@color/line"
-                        app:strokeWidth="2dp">
+                        app:strokeWidth="2dp"
+                        android:onClick="@{() -> viewModel.displayCategoryBooks(viewModel.fictionBooks, &quot;fiction&quot;)}">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -378,7 +394,8 @@
                         android:layout_marginHorizontal="5dp"
                         app:cardElevation="0dp"
                         app:strokeColor="@color/line"
-                        app:strokeWidth="2dp">
+                        app:strokeWidth="2dp"
+                        android:onClick="@{() -> viewModel.displayCategoryBooks(list, &quot;literature&quot;)}">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -412,7 +429,8 @@
                         android:layout_marginHorizontal="5dp"
                         app:cardElevation="0dp"
                         app:strokeColor="@color/line"
-                        app:strokeWidth="2dp">
+                        app:strokeWidth="2dp"
+                        android:onClick="@{() -> viewModel.displayCategoryBooks(list, &quot;finance&quot;)}">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -446,7 +464,8 @@
                         android:layout_marginHorizontal="5dp"
                         app:cardElevation="0dp"
                         app:strokeColor="@color/line"
-                        app:strokeWidth="2dp">
+                        app:strokeWidth="2dp"
+                        android:onClick="@{() -> viewModel.displayCategoryBooks(list, &quot;investment&quot;)}">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -480,7 +499,8 @@
                         android:layout_marginHorizontal="5dp"
                         app:cardElevation="0dp"
                         app:strokeColor="@color/line"
-                        app:strokeWidth="2dp">
+                        app:strokeWidth="2dp"
+                        android:onClick="@{() -> viewModel.displayCategoryBooks(list, &quot;history&quot;)}">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -514,7 +534,8 @@
                         android:layout_marginHorizontal="5dp"
                         app:cardElevation="0dp"
                         app:strokeColor="@color/line"
-                        app:strokeWidth="2dp">
+                        app:strokeWidth="2dp"
+                        android:onClick="@{() -> viewModel.displayCategoryBooks(list, &quot;computing&quot;)}">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -548,7 +569,8 @@
                         android:layout_marginHorizontal="5dp"
                         app:cardElevation="0dp"
                         app:strokeColor="@color/line"
-                        app:strokeWidth="2dp">
+                        app:strokeWidth="2dp"
+                        android:onClick="@{() -> viewModel.displayCategoryBooks(list, &quot;technology&quot;)}">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -582,7 +604,8 @@
                         android:layout_marginHorizontal="5dp"
                         app:cardElevation="0dp"
                         app:strokeColor="@color/line"
-                        app:strokeWidth="2dp">
+                        app:strokeWidth="2dp"
+                        android:onClick="@{() -> viewModel.displayCategoryBooks(list, &quot;children's books&quot;)}">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -616,7 +639,8 @@
                         android:layout_marginHorizontal="5dp"
                         app:cardElevation="0dp"
                         app:strokeColor="@color/line"
-                        app:strokeWidth="2dp">
+                        app:strokeWidth="2dp"
+                        android:onClick="@{() -> viewModel.displayCategoryBooks(list, &quot;mystery&quot;)}">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -650,7 +674,8 @@
                         android:layout_marginHorizontal="5dp"
                         app:cardElevation="0dp"
                         app:strokeColor="@color/line"
-                        app:strokeWidth="2dp">
+                        app:strokeWidth="2dp"
+                        android:onClick="@{() -> viewModel.displayCategoryBooks(list, &quot;suspense&quot;)}">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -684,7 +709,8 @@
                         android:layout_marginHorizontal="5dp"
                         app:cardElevation="0dp"
                         app:strokeColor="@color/line"
-                        app:strokeWidth="2dp">
+                        app:strokeWidth="2dp"
+                        android:onClick="@{() -> viewModel.displayCategoryBooks(list, &quot;romance novel&quot;)}">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -718,7 +744,8 @@
                         android:layout_marginHorizontal="5dp"
                         app:cardElevation="0dp"
                         app:strokeColor="@color/line"
-                        app:strokeWidth="2dp">
+                        app:strokeWidth="2dp"
+                        android:onClick="@{() -> viewModel.displayCategoryBooks(viewModel.religionBooks, &quot;religion&quot;)}">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -752,7 +779,8 @@
                         android:layout_marginHorizontal="5dp"
                         app:cardElevation="0dp"
                         app:strokeColor="@color/line"
-                        app:strokeWidth="2dp">
+                        app:strokeWidth="2dp"
+                        android:onClick="@{() -> viewModel.displayCategoryBooks(list, &quot;spirituality&quot;)}">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -786,7 +814,8 @@
                         android:layout_marginHorizontal="5dp"
                         app:cardElevation="0dp"
                         app:strokeColor="@color/line"
-                        app:strokeWidth="2dp">
+                        app:strokeWidth="2dp"
+                        android:onClick="@{() -> viewModel.displayCategoryBooks(list, &quot;health&quot;)}">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -820,7 +849,8 @@
                         android:layout_marginHorizontal="5dp"
                         app:cardElevation="0dp"
                         app:strokeColor="@color/line"
-                        app:strokeWidth="2dp">
+                        app:strokeWidth="2dp"
+                        android:onClick="@{() -> viewModel.displayCategoryBooks(list, &quot;lifestyle&quot;)}">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -852,13 +882,28 @@
 
             </HorizontalScrollView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Education"
-                android:textColor="@color/emphasize"
-                android:textSize="@dimen/subtitle"
-                android:paddingVertical="15dp"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Education"
+                    android:textColor="@color/emphasize"
+                    android:textSize="@dimen/subtitle"
+                    android:paddingVertical="15dp"/>
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_baseline_arrow_forward_24"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp"
+                    android:onClick="@{() -> viewModel.displayCategoryBooks(viewModel.educationBooks, &quot;education&quot;)}"/>
+
+            </RelativeLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/education_downloadable_books"
@@ -872,13 +917,28 @@
                 android:layout_height="311dp"
                 app:apiStatus="@{viewModel.educationStatus}" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Fiction"
-                android:textColor="@color/emphasize"
-                android:textSize="@dimen/subtitle"
-                android:paddingVertical="15dp"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fiction"
+                    android:textColor="@color/emphasize"
+                    android:textSize="@dimen/subtitle"
+                    android:paddingVertical="15dp"/>
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_baseline_arrow_forward_24"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp"
+                    android:onClick="@{() -> viewModel.displayCategoryBooks(viewModel.fictionBooks, &quot;fiction&quot;)}"/>
+
+            </RelativeLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/fiction_downloadable_books"
@@ -892,13 +952,28 @@
                 android:layout_height="311dp"
                 app:apiStatus="@{viewModel.fictionStatus}" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Art"
-                android:textColor="@color/emphasize"
-                android:textSize="@dimen/subtitle"
-                android:paddingVertical="15dp"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Art"
+                    android:textColor="@color/emphasize"
+                    android:textSize="@dimen/subtitle"
+                    android:paddingVertical="15dp"/>
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_baseline_arrow_forward_24"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp"
+                    android:onClick="@{() -> viewModel.displayCategoryBooks(viewModel.artBooks, &quot;art&quot;)}"/>
+
+            </RelativeLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/art_downloadable_books"
@@ -911,6 +986,41 @@
                 android:layout_width="180dp"
                 android:layout_height="311dp"
                 app:apiStatus="@{viewModel.artStatus}" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Religion"
+                    android:textColor="@color/emphasize"
+                    android:textSize="@dimen/subtitle"
+                    android:paddingVertical="15dp"/>
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_baseline_arrow_forward_24"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp"
+                    android:onClick="@{() -> viewModel.displayCategoryBooks(viewModel.religionBooks, &quot;religion&quot;)}"/>
+
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/religion_downloadable_books"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:listData="@{viewModel.religionBooks}"
+                tools:listitem="@layout/book_item" />
+
+            <ImageView
+                android:layout_width="180dp"
+                android:layout_height="311dp"
+                app:apiStatus="@{viewModel.religionStatus}" />
 
         </LinearLayout>
 
