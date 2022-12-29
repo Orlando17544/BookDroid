@@ -17,7 +17,6 @@ import java.lang.reflect.Type
 enum class DownloadableBookApiStatus { LOADING, ERROR, DONE }
 
 class HomeViewModel : ViewModel() {
-    //val emptyList = listOf<DownloadableBook>();
 
     private val _educationBooks = MutableLiveData<List<DownloadableBook>>();
 
@@ -69,6 +68,11 @@ class HomeViewModel : ViewModel() {
     val navigateToSelectedDownloadableBook: LiveData<DownloadableBook>
         get() = _navigateToSelectedDownloadableBook
 
+    private val _navigateToLibrary = MutableLiveData<DownloadableBook>();
+
+    val navigateToLibrary: LiveData<DownloadableBook>
+        get() = _navigateToLibrary
+
     init {
         getEducationBooksFromApi();
         getFictionBooksFromApi();
@@ -82,6 +86,10 @@ class HomeViewModel : ViewModel() {
 
     fun displayDownloadableBook(downloadableBook: DownloadableBook) {
         _navigateToSelectedDownloadableBook.value = downloadableBook;
+    }
+
+    fun displayLibrary() {
+        _navigateToLibrary.value = null;
     }
 
     private fun getEducationBooksFromApi() {

@@ -54,7 +54,8 @@
                 android:textColor="@color/text_button"
                 android:textSize="@dimen/normal"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="100dp"/>
+                android:layout_marginBottom="100dp"
+                android:onClick="@{() -> viewModel.displayLibrary()}"/>
 
             <TextView
                 android:layout_width="wrap_content"

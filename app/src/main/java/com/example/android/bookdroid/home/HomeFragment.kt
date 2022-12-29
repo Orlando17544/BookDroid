@@ -1,18 +1,19 @@
 package com.example.android.bookdroid.home
 
+import android.R
 import android.content.Intent
 import android.os.Bundle
-import android.provider.AlarmClock.EXTRA_MESSAGE
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.android.bookdroid.database.BookDatabase
+import com.example.android.bookdroid.MainActivity
 import com.example.android.bookdroid.databinding.FragmentHomeBinding
-import com.example.android.bookdroid.network.DownloadableBook
+
 
 const val EXTRA_MESSAGE_DOWNLOADABLE_BOOK = "com.example.bookdroid.downloadable_book"
 const val EXTRA_MESSAGE_DOWNLOADABLE_BOOKS = "com.example.bookdroid.downloadable_books"
@@ -63,6 +64,11 @@ class HomeFragment : Fragment() {
                 putExtra(EXTRA_MESSAGE_DOWNLOADABLE_BOOK, downloadableBook)
             }
             startActivity(intent)
+        })
+
+        viewModel.navigateToLibrary.observe(viewLifecycleOwner, Observer {
+            val bottomNavigation = (activity as MainActivity).binding.bottomNavigation;
+            bottomNavigation.selectedItemId =  bottomNavigation.menu.getItem(1).itemId;
         })
 
         return binding.root;
