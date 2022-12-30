@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Transaction
 
 @Dao
 interface BookDatabaseDao {
@@ -19,12 +20,11 @@ interface BookDatabaseDao {
     @Query("SELECT * FROM book_table")
     fun getBooks(): LiveData<List<Book>>;
 
-    /*
-    @Query("SELECT * FROM book_identifier_table WHERE category = :category")
-    fun getBookIdentifiersByCategory(category: String): LiveData<Books>*/
+    @Transaction
+    @Query("SELECT * FROM shelve_table")
+    fun getShelvesWithBooks(): LiveData<List<ShelveWithBooks>>
 
-    /*
-
+    @Transaction
     @Query("SELECT * FROM book_table")
-    fun getArtBooks(): LiveData<Books>*/
+    fun getBooksWithShelves(): LiveData<List<BookWithShelves>>
 }

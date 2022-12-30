@@ -14,7 +14,7 @@ import kotlinx.parcelize.Parcelize
 data class Book (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    var id: Long = 0,
+    var bookId: Long = 0,
 
     @ColumnInfo(name = "path")
     var path: String = "",
