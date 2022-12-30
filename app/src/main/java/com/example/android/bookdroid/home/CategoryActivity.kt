@@ -3,17 +3,12 @@ package com.example.android.bookdroid.home
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Parcelable
-import androidx.compose.ui.text.capitalize
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.bookdroid.R
-import com.example.android.bookdroid.database.BookDatabase
 import com.example.android.bookdroid.databinding.ActivityCategoryBinding
-import com.example.android.bookdroid.databinding.FragmentHomeBinding
-import com.example.android.bookdroid.network.DownloadableBook
 
 class CategoryActivity : AppCompatActivity() {
 
@@ -52,7 +47,7 @@ class CategoryActivity : AppCompatActivity() {
         }
 
         viewModel.navigateToSelectedDownloadableBook.observe(this, Observer { downloadableBook ->
-            val intent = Intent(this, BookActivity::class.java).apply {
+            val intent = Intent(this, DownloadableBookActivity::class.java).apply {
                 putExtra(EXTRA_MESSAGE_DOWNLOADABLE_BOOK, downloadableBook)
             }
             startActivity(intent)

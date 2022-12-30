@@ -1,7 +1,6 @@
 package com.example.android.bookdroid.home
 
 import android.content.Intent
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.FileProvider
@@ -11,14 +10,13 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.android.bookdroid.R
 import com.example.android.bookdroid.database.BookDatabase
 import com.example.android.bookdroid.databinding.ActivityBookBinding
-import com.example.android.bookdroid.databinding.ActivityCategoryBinding
 import com.example.android.bookdroid.network.DownloadableBook
 import java.io.File
 
-class BookActivity : AppCompatActivity() {
+class DownloadableBookActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBookBinding
-    private lateinit var viewModel: BookViewModel
+    private lateinit var viewModel: DownloadableBookViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,13 +30,13 @@ class BookActivity : AppCompatActivity() {
 
         val dataSource = BookDatabase.getInstance(application).bookDatabaseDao;
 
-        val viewModelFactory = downloadableBook?.let { BookViewModelFactory(it, dataSource, application) }
+        val viewModelFactory = downloadableBook?.let { DownloadableBookViewModelFactory(it, dataSource, application) }
 
         // Get a reference to the ViewModel associated with this fragment.
         viewModel = viewModelFactory?.let {
             ViewModelProvider(this,
                 it
-            ).get(BookViewModel::class.java)
+            ).get(DownloadableBookViewModel::class.java)
         }!!
 
         binding.viewModel = viewModel;

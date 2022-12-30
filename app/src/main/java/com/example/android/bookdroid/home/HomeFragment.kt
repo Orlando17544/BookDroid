@@ -1,12 +1,10 @@
 package com.example.android.bookdroid.home
 
-import android.R
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -60,7 +58,7 @@ class HomeFragment : Fragment() {
         })
 
         viewModel.navigateToSelectedDownloadableBook.observe(viewLifecycleOwner, Observer { downloadableBook ->
-            val intent = Intent(this.context, BookActivity::class.java).apply {
+            val intent = Intent(this.context, DownloadableBookActivity::class.java).apply {
                 putExtra(EXTRA_MESSAGE_DOWNLOADABLE_BOOK, downloadableBook)
             }
             startActivity(intent)

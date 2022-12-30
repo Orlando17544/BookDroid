@@ -18,9 +18,9 @@ import java.io.FileOutputStream
 import java.io.InputStream
 
 
-class BookViewModel(val downloadableBook: DownloadableBook,
-                    val database: BookDatabaseDao,
-                    application: Application) : AndroidViewModel(application) {
+class DownloadableBookViewModel(val downloadableBook: DownloadableBook,
+                                val database: BookDatabaseDao,
+                                application: Application) : AndroidViewModel(application) {
     lateinit var identifier: String;
 
     private var _downloadState = MutableLiveData<String>();
