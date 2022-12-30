@@ -42,8 +42,6 @@ class DownloadableBookActivity : AppCompatActivity() {
         binding.viewModel = viewModel;
 
         viewModel.book.observe(this, Observer { book ->
-            //val uri = Uri.fromFile(File(book.path))
-
             val uri = FileProvider.getUriForFile(this, this.getApplicationContext().getPackageName() + ".fileprovider", File(book.path));
 
             // Open file with user selected app

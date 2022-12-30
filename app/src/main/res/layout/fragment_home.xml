@@ -911,7 +911,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:listData="@{viewModel.educationBooks}"
-                tools:listitem="@layout/book_item" />
+                tools:listitem="@layout/downloadable_book_item" />
 
             <ImageView
                 android:layout_width="180dp"
@@ -946,7 +946,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:listData="@{viewModel.fictionBooks}"
-                tools:listitem="@layout/book_item" />
+                tools:listitem="@layout/downloadable_book_item" />
 
             <ImageView
                 android:layout_width="180dp"
@@ -981,7 +981,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:listData="@{viewModel.artBooks}"
-                tools:listitem="@layout/book_item" />
+                tools:listitem="@layout/downloadable_book_item" />
 
             <ImageView
                 android:layout_width="180dp"
@@ -1016,7 +1016,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:listData="@{viewModel.religionBooks}"
-                tools:listitem="@layout/book_item" />
+                tools:listitem="@layout/downloadable_book_item" />
 
             <ImageView
                 android:layout_width="180dp"

@@ -16,26 +16,12 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class LibraryFragment : Fragment() {
 
-    private lateinit var viewModel: LibraryViewModel;
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         val binding = FragmentLibraryBinding.inflate(inflater)
-
-        val application = requireNotNull(this.activity).application;
-
-        val dataSource = BookDatabase.getInstance(application).bookDatabaseDao;
-        val viewModelFactory = LibraryViewModelFactory(dataSource, application)
-
-        // Get a reference to the ViewModel associated with this fragment.
-        viewModel =
-            ViewModelProvider(
-                this, viewModelFactory).get(LibraryViewModel::class.java)
-
-        binding.viewModel = viewModel;
 
         binding.lifecycleOwner = viewLifecycleOwner;
 

@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/drawable/ic_baseline_bookmark_add_24.xml" value="0.1965" />
         <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1965" />
         <entry key="app/src/main/res/drawable/ic_baseline_library_books_24.xml" value="0.1965" />
+        <entry key="app/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.127" />
         <entry key="app/src/main/res/drawable/library_selector.xml" value="0.127" />
         <entry key="app/src/main/res/drawable/loading_img.xml" value="0.127" />
         <entry key="app/src/main/res/drawable/wish_list_selector.xml" value="0.127" />
@@ -15,6 +16,7 @@
         <entry key="app/src/main/res/layout/activity_category.xml" value="0.16032608695652173" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.17395833333333333" />
         <entry key="app/src/main/res/layout/book_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/downloadable_book_item.xml" value="0.16032608695652173" />
         <entry key="app/src/main/res/layout/fragment_books.xml" value="0.17755825734549138" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_library.xml" value="0.2833333333333333" />

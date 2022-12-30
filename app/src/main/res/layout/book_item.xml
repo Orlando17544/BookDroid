@@ -3,43 +3,64 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable
-            name="clickListener"
-            type="com.example.android.bookdroid.home.DownloadableBookListener" />
 
         <variable
-            name="downloadableBook"
-            type="com.example.android.bookdroid.network.DownloadableBook" />
+            name="clickListener"
+            type="com.example.android.bookdroid.library.BookListener" />
+
+        <variable
+            name="book"
+            type="com.example.android.bookdroid.database.Book" />
+
     </data>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingHorizontal="15dp"
-        android:onClick="@{() -> clickListener.onClick(downloadableBook)}">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:onClick="@{() -> clickListener.onClick(book)}"
+        android:paddingVertical="15dp">
 
         <ImageView
-            android:layout_width="180dp"
-            android:layout_height="311dp"
-            android:scaleType="centerCrop"
-            app:imageUrl="@{downloadableBook.cover.get(&quot;medium&quot;)}"/>
-
-        <TextView
-            android:layout_width="180dp"
+            android:layout_weight="0.3"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{downloadableBook.title}"
-            android:maxLines="2"/>
+            android:scaleType="center"
+            app:imageUrl="@{book.cover}"/>
+
+        <RelativeLayout
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{downloadableBook.publishDate}"/>
+                android:text="@{book.title}"
+                android:textStyle="bold"
+                android:textSize="@dimen/normal"
+                android:textColor="@color/emphasize"
+                android:layout_alignParentTop="true"
+                android:paddingVertical="15dp"/>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{String.valueOf(downloadableBook.numberPages) + ` pages`}"/>
+                android:text="@{book.author}"
+                android:textSize="@dimen/normal"
+                android:textColor="@color/deemphasize"
+                android:layout_alignParentBottom="true"
+                android:paddingVertical="15dp"/>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_weight="0.2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_baseline_more_vert_24"/>
 
     </LinearLayout>
+
 </layout>

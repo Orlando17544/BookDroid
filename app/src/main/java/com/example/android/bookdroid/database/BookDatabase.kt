@@ -27,7 +27,7 @@ abstract class BookDatabase : RoomDatabase() {
                         BookDatabase::class.java,
                         "book_database.db"
                     )
-                        .fallbackToDestructiveMigration()
+                        //.fallbackToDestructiveMigration()
                         .createFromAsset("database/book_database.db")
                         .build()
                     INSTANCE = instance

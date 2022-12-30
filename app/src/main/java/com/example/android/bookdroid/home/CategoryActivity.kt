@@ -23,25 +23,23 @@ class CategoryActivity : AppCompatActivity() {
         val downloadableBooks = intent.getParcelableArrayExtra(EXTRA_MESSAGE_DOWNLOADABLE_BOOKS)
         val category = intent.getStringExtra(EXTRA_MESSAGE_CATEGORY).toString()
 
-        supportActionBar?.title = category.capitalize();
+        supportActionBar?.title = category.replaceFirstChar {
+            it.uppercaseChar();
+        }
 
         val viewModelFactory = CategoryViewModelFactory(downloadableBooks?.asList(), category);
 
         // Get a reference to the ViewModel associated with this fragment.
-        viewModel =
-            viewModelFactory?.let {
-                ViewModelProvider(
-                    this, it
-                ).get(CategoryViewModel::class.java)
-            }!!
+        viewModel = ViewModelProvider(this, viewModelFactory)
+            .get(CategoryViewModel::class.java)
 
         binding.viewModel = viewModel;
 
         binding.lifecycleOwner = this;
 
         binding.downloadableBooks.apply {
-            this.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
-            this.adapter = DownloadableBookAdapter(DownloadableBookListener { downloadableBook ->
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+            adapter = DownloadableBookAdapter(DownloadableBookListener { downloadableBook ->
                 viewModel.displayDownloadableBook(downloadableBook);
             })
         }

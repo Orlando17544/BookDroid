@@ -25,17 +25,26 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.android.bookdroid.database.Book
 import com.example.android.bookdroid.home.DownloadableBookAdapter
 import com.example.android.bookdroid.home.DownloadableBookApiStatus
 import com.example.android.bookdroid.home.DownloadableBookApiStatus.*
+import com.example.android.bookdroid.library.BookAdapter
 import com.example.android.bookdroid.network.DownloadableBook
+import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
 
 /**
  * When there is no Mars property data (data is null), hide the [RecyclerView], otherwise show it.
  */
 @BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView, data: List<DownloadableBook>?) {
+fun bindRecyclerView1(recyclerView: RecyclerView, data: List<DownloadableBook>?) {
     val adapter = recyclerView.adapter as DownloadableBookAdapter
+    adapter.submitList(data)
+}
+
+@BindingAdapter("listData")
+fun bindRecyclerView2(recyclerView: RecyclerView, data: List<Book>?) {
+    val adapter = recyclerView.adapter as BookAdapter
     adapter.submitList(data)
 }
 

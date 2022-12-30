@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="clickListener"
+            type="com.example.android.bookdroid.home.DownloadableBookListener" />
+
+        <variable
+            name="downloadableBook"
+            type="com.example.android.bookdroid.network.DownloadableBook" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="15dp"
+        android:onClick="@{() -> clickListener.onClick(downloadableBook)}">
+
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_height="311dp"
+            android:scaleType="centerCrop"
+            app:imageUrl="@{downloadableBook.cover.get(&quot;medium&quot;)}"/>
+
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="@{downloadableBook.title}"
+            android:maxLines="2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{downloadableBook.publishDate}"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{String.valueOf(downloadableBook.numberPages) + ` pages`}"/>
+
+    </LinearLayout>
+</layout>

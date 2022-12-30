@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.bookdroid.databinding.BookItemBinding
+import com.example.android.bookdroid.databinding.DownloadableBookItemBinding
 import com.example.android.bookdroid.network.DownloadableBook
 
 class DownloadableBookAdapter(val clickListener: DownloadableBookListener): ListAdapter<DownloadableBook,
@@ -13,7 +13,7 @@ class DownloadableBookAdapter(val clickListener: DownloadableBookListener): List
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DownloadableBookAdapter
     .DownloadableBookViewHolder {
-        return DownloadableBookViewHolder(BookItemBinding.inflate(
+        return DownloadableBookViewHolder(DownloadableBookItemBinding.inflate(
             LayoutInflater.from(parent.context)))
     }
 
@@ -23,7 +23,7 @@ class DownloadableBookAdapter(val clickListener: DownloadableBookListener): List
     }
 
     class DownloadableBookViewHolder(private var binding:
-                                     BookItemBinding):
+                                     DownloadableBookItemBinding):
         RecyclerView.ViewHolder(binding.root) {
         fun bind(downloadableBook: DownloadableBook, clickListener: DownloadableBookListener) {
             binding.downloadableBook = downloadableBook
