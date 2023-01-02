@@ -8,8 +8,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.android.bookdroid.R
+import com.example.android.bookdroid.database.Book
 import com.example.android.bookdroid.database.BookDatabase
 import com.example.android.bookdroid.databinding.ActivityBookBinding
+import com.example.android.bookdroid.library.EXTRA_MESSAGE_BOOK
 import com.example.android.bookdroid.network.DownloadableBook
 import java.io.File
 
@@ -26,10 +28,17 @@ class DownloadableBookActivity : AppCompatActivity() {
 
         binding.lifecycleOwner = this;
 
-        val downloadableBook = intent.getParcelableExtra<DownloadableBook>(EXTRA_MESSAGE_DOWNLOADABLE_BOOK) as DownloadableBook;
+        var downloadableBook = intent.getParcelableExtra<DownloadableBook?>(EXTRA_MESSAGE_DOWNLOADABLE_BOOK);
+        var book = intent.getParcelableExtra<Book?>(EXTRA_MESSAGE_BOOK);
 
-        binding.topAppBar.title = downloadableBook.title?.replaceFirstChar {
-            it.uppercaseChar();
+        if (downloadableBook == null) {
+            binding.topAppBar.title = book?.title?.replaceFirstChar {
+                it.uppercaseChar();
+            }
+        } else if (book == null) {
+            binding.topAppBar.title = downloadableBook.title?.replaceFirstChar {
+                it.uppercaseChar();
+            }
         }
 
         binding.topAppBar.setNavigationOnClickListener {
@@ -38,7 +47,7 @@ class DownloadableBookActivity : AppCompatActivity() {
 
         val dataSource = BookDatabase.getInstance(application).bookDatabaseDao;
 
-        val viewModelFactory = downloadableBook?.let { DownloadableBookViewModelFactory(it, dataSource, application) }
+        val viewModelFactory = DownloadableBookViewModelFactory(downloadableBook, book?.isbn, dataSource, application);
 
         // Get a reference to the ViewModel associated with this fragment.
         viewModel = viewModelFactory?.let {
@@ -58,6 +67,10 @@ class DownloadableBookActivity : AppCompatActivity() {
             intent.setDataAndType(uri, "application/pdf")
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             startActivity(intent)
+        })
+
+        viewModel.downloadableBookLive.observe(this, Observer {
+            viewModel.getBookInformation();
         })
     }
 }

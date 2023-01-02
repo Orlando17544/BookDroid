@@ -19,6 +19,11 @@ class OptionsViewModel(val bookWithShelves: BookWithShelves, val database: BookD
     val navigateToShelvesActivity: LiveData<Pair<BookWithShelves, String>>
         get() = _navigateToShelvesActivity
 
+    private var _navigateToDownloadableBookActivity = MutableLiveData<Book>();
+
+    val navigateToDownloadableBookActivity: LiveData<Book>
+        get() = _navigateToDownloadableBookActivity
+
     fun deleteBook() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
@@ -36,5 +41,9 @@ class OptionsViewModel(val bookWithShelves: BookWithShelves, val database: BookD
 
     fun navigateToShelvesActivity(action: String) {
         _navigateToShelvesActivity.value = Pair(bookWithShelves, action);
+    }
+
+    fun navigateToDownloadableBookActivity(book: Book) {
+        _navigateToDownloadableBookActivity.value = book;
     }
 }
