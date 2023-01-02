@@ -12,7 +12,7 @@ import com.example.android.bookdroid.database.BookWithShelves
 import com.example.android.bookdroid.databinding.OptionsModalBottomSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-const val EXTRA_SHELF_ACTION = "com.example.bookdroid.shelf_action"
+const val EXTRA_MESSAGE_SHELF_ACTION = "com.example.bookdroid.shelf_action"
 
 class OptionsModalBottomSheet : BottomSheetDialogFragment() {
 
@@ -52,7 +52,7 @@ class OptionsModalBottomSheet : BottomSheetDialogFragment() {
         viewModel.navigateToShelvesActivity.observe(viewLifecycleOwner, Observer { pair ->
             val intent = Intent(context, AddRemoveShelvesActivity::class.java).apply {
                 putExtra(EXTRA_MESSAGE_BOOK_WITH_SHELVES, pair.first);
-                putExtra(EXTRA_SHELF_ACTION, pair.second)
+                putExtra(EXTRA_MESSAGE_SHELF_ACTION, pair.second)
             }
             startActivity(intent);
             dismiss();

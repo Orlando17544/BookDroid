@@ -47,7 +47,7 @@ class BooksFragment : Fragment() {
 
         binding.books.apply {
             layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false);
-            adapter = BookAdapter(BookListener { bookWithShelves ->
+            adapter = BookWithShelvesAdapter(BookWithShelvesListener { bookWithShelves ->
                 val uri = FileProvider.getUriForFile(context, application.applicationContext.getPackageName() + ".fileprovider", File(bookWithShelves.book.path));
 
                 // Open file with user selected app
@@ -56,7 +56,7 @@ class BooksFragment : Fragment() {
                 intent.setDataAndType(uri, "application/pdf")
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 startActivity(intent)
-            }, BookListener { bookWithShelves ->
+            }, BookWithShelvesListener { bookWithShelves ->
                 val modalBottomSheet = OptionsModalBottomSheet()
 
                 val args = Bundle();

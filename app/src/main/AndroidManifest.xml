@@ -17,10 +17,13 @@
         android:theme="@style/Theme.BookDroid"
         tools:targetApi="31">
         <activity
+            android:name=".library.BooksActivity"
+            android:exported="false"
+            android:theme="@style/Theme.BookDroid.NoActionBar"/>
+        <activity
             android:name=".library.AddRemoveShelvesActivity"
             android:exported="false"
-            android:theme="@style/Theme.BookDroid.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.BookDroid.NoActionBar"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -34,10 +37,12 @@
 
         <activity
             android:name=".home.DownloadableBookActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.BookDroid.NoActionBar"/>
         <activity
             android:name=".home.CategoryActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.BookDroid.NoActionBar"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -6,48 +6,45 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.bookdroid.database.Book
-import com.example.android.bookdroid.database.BookWithShelves
 import com.example.android.bookdroid.databinding.BookItemBinding
 
-class BookAdapter(val clickListenerOpen: BookListener, val clickListenerOptions: BookListener): ListAdapter<BookWithShelves,
+class BookAdapter(val clickListener: BookListener): ListAdapter<Book,
         BookAdapter.BookViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookAdapter
     .BookViewHolder {
         return BookViewHolder(
             BookItemBinding.inflate(
-            LayoutInflater.from(parent.context)))
+                LayoutInflater.from(parent.context)))
     }
 
     override fun onBindViewHolder(holder: BookAdapter.BookViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item, clickListenerOpen, clickListenerOptions)
+        holder.bind(item, clickListener)
     }
 
     class BookViewHolder(private var binding:
-                                     BookItemBinding
+                                    BookItemBinding
     ):
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(bookWithShelves: BookWithShelves, clickListenerOpen: BookListener, clickListenerOptions: BookListener) {
-            binding.bookWithShelves = bookWithShelves
+        fun bind(book: Book, clickListener: BookListener) {
+            binding.book = book
             binding.executePendingBindings()
-            binding.clickListenerOpen = clickListenerOpen
-            binding.clickListenerOptions = clickListenerOptions
+            binding.clickListener = clickListener
         }
     }
 
-    companion object DiffCallback : DiffUtil.ItemCallback<BookWithShelves>() {
-        override fun areItemsTheSame(oldItem: BookWithShelves, newItem: BookWithShelves): Boolean {
+    companion object DiffCallback : DiffUtil.ItemCallback<Book>() {
+        override fun areItemsTheSame(oldItem: Book, newItem: Book): Boolean {
             return oldItem === newItem;
         }
 
-        override fun areContentsTheSame(oldItem: BookWithShelves, newItem: BookWithShelves): Boolean {
-            return oldItem.book.title == newItem.book.title
-                    && oldItem.shelves.size.equals(newItem.shelves.size);
+        override fun areContentsTheSame(oldItem: Book, newItem: Book): Boolean {
+            return oldItem.title == newItem.title
         }
     }
 }
 
-class BookListener(val clickListener: (bookWithShelves: BookWithShelves) -> Unit) {
-    fun onClick(bookWithShelves: BookWithShelves) = clickListener(bookWithShelves)
+class BookListener(val clickListener: (bookWithShelves: Book) -> Unit) {
+    fun onClick(book: Book) = clickListener(book)
 }

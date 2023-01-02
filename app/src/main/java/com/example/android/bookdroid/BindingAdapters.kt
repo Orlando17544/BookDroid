@@ -33,6 +33,7 @@ import com.example.android.bookdroid.home.DownloadableBookAdapter
 import com.example.android.bookdroid.home.DownloadableBookApiStatus
 import com.example.android.bookdroid.home.DownloadableBookApiStatus.*
 import com.example.android.bookdroid.library.BookAdapter
+import com.example.android.bookdroid.library.BookWithShelvesAdapter
 import com.example.android.bookdroid.library.ShelfAdapter
 import com.example.android.bookdroid.library.ShelfWithBooksAdapter
 import com.example.android.bookdroid.network.DownloadableBook
@@ -49,7 +50,7 @@ fun bindRecyclerView1(recyclerView: RecyclerView, data: List<DownloadableBook>?)
 
 @BindingAdapter("listData")
 fun bindRecyclerView2(recyclerView: RecyclerView, data: List<BookWithShelves>?) {
-    val adapter = recyclerView.adapter as BookAdapter
+    val adapter = recyclerView.adapter as BookWithShelvesAdapter
     adapter.submitList(data)
 }
 
@@ -62,6 +63,12 @@ fun bindRecyclerView3(recyclerView: RecyclerView, data: List<ShelfWithBooks>?) {
 @BindingAdapter("listData")
 fun bindRecyclerView4(recyclerView: RecyclerView, data: List<Shelf>?) {
     val adapter = recyclerView.adapter as ShelfAdapter
+    adapter.submitList(data)
+}
+
+@BindingAdapter("listData")
+fun bindRecyclerView5(recyclerView: RecyclerView, data: List<Book>?) {
+    val adapter = recyclerView.adapter as BookAdapter
     adapter.submitList(data)
 }
 

@@ -19,6 +19,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import java.io.File
 
+const val EXTRA_MESSAGE_SHELF_WITH_BOOKS = "com.example.bookdroid.shelf_with_books";
+
 class ShelvesFragment : Fragment() {
 
     private lateinit var viewModel: ShelvesViewModel
@@ -47,14 +49,12 @@ class ShelvesFragment : Fragment() {
         binding.shelvesWithBooks.apply {
             layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false);
             adapter = ShelfWithBooksAdapter(ShelfWithBooksListener { shelfWithBooks ->
-                /*val uri = FileProvider.getUriForFile(context, application.applicationContext.getPackageName() + ".fileprovider", File(book.path));
 
-                // Open file with user selected app
-                val intent = Intent()
-                intent.action = Intent.ACTION_VIEW
-                intent.setDataAndType(uri, "application/pdf")
-                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                startActivity(intent)*/
+                val intent = Intent(this.context, BooksActivity::class.java).apply {
+                    putExtra(EXTRA_MESSAGE_SHELF_WITH_BOOKS, shelfWithBooks);
+                }
+
+                startActivity(intent);
             }, ShelfWithBooksListener { shelfWithBooks ->
                 /*
                 val modalBottomSheet = OptionsModalBottomSheet()

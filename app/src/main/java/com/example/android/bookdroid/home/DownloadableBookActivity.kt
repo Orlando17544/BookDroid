@@ -26,7 +26,15 @@ class DownloadableBookActivity : AppCompatActivity() {
 
         binding.lifecycleOwner = this;
 
-        val downloadableBook = intent.getParcelableExtra<DownloadableBook>(EXTRA_MESSAGE_DOWNLOADABLE_BOOK)
+        val downloadableBook = intent.getParcelableExtra<DownloadableBook>(EXTRA_MESSAGE_DOWNLOADABLE_BOOK) as DownloadableBook;
+
+        binding.topAppBar.title = downloadableBook.title?.replaceFirstChar {
+            it.uppercaseChar();
+        }
+
+        binding.topAppBar.setNavigationOnClickListener {
+            finish();
+        }
 
         val dataSource = BookDatabase.getInstance(application).bookDatabaseDao;
 

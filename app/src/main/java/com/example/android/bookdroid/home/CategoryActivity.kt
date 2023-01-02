@@ -23,8 +23,12 @@ class CategoryActivity : AppCompatActivity() {
         val downloadableBooks = intent.getParcelableArrayExtra(EXTRA_MESSAGE_DOWNLOADABLE_BOOKS)
         val category = intent.getStringExtra(EXTRA_MESSAGE_CATEGORY).toString()
 
-        supportActionBar?.title = category.replaceFirstChar {
+        binding.topAppBar.title = category.replaceFirstChar {
             it.uppercaseChar();
+        }
+
+        binding.topAppBar.setNavigationOnClickListener {
+            finish();
         }
 
         val viewModelFactory = CategoryViewModelFactory(downloadableBooks?.asList(), category);

@@ -20,7 +20,7 @@ class AddRemoveShelvesActivity : AppCompatActivity() {
         //setContentView(R.layout.activity_add_book_shelf)
         binding = DataBindingUtil.setContentView(this, activity_add_remove_shelves)
 
-        val shelfAction: String = intent.getStringExtra(EXTRA_SHELF_ACTION) as String;
+        val shelfAction: String = intent.getStringExtra(EXTRA_MESSAGE_SHELF_ACTION) as String;
         var bookWithShelves: BookWithShelves = intent.getParcelableExtra<BookWithShelves>(EXTRA_MESSAGE_BOOK_WITH_SHELVES) as BookWithShelves;
 
         if (shelfAction.equals("remove")) {
