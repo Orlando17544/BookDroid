@@ -42,10 +42,6 @@ class OptionsModalBottomSheet : BottomSheetDialogFragment() {
         binding.lifecycleOwner = this;
 
         viewModel.close.observe(viewLifecycleOwner, Observer {
-            /*val intent = Intent(context, AddBookShelfActivity::class.java).apply {
-                putExtra(EXTRA_MESSAGE_BOOK, book);
-            }
-            startActivity(intent);*/
             dismiss()
         })
 

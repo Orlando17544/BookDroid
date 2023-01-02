@@ -46,4 +46,7 @@ interface BookDatabaseDao {
 
     @Query("SELECT * FROM shelfbookcrossref WHERE shelfId = :shelfId")
     fun getShelfBookCrossRefsByShelfId(shelfId: Long): List<ShelfBookCrossRef>;
+
+    @Query("SELECT * FROM shelfbookcrossref WHERE bookId = :bookId")
+    fun getShelfBookCrossRefsByBookId(bookId: Long): List<ShelfBookCrossRef>;
 }

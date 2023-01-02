@@ -23,6 +23,12 @@ class OptionsViewModel(val bookWithShelves: BookWithShelves, val database: BookD
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 database.deleteBook(bookWithShelves.book);
+
+                val shelfBookCrossRefs = database.getShelfBookCrossRefsByBookId(bookWithShelves.book.bookId);
+
+                for (shelfBookCrossRef in shelfBookCrossRefs) {
+                    database.deleteShelfBook(shelfBookCrossRef);
+                }
                 _close.postValue(null);
             }
         }
