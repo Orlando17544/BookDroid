@@ -3,4 +3,5 @@
     <dimen name="title">25sp</dimen>
     <dimen name="normal">15sp</dimen>
     <dimen name="subtitle">20sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

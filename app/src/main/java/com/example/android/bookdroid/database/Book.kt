@@ -13,7 +13,7 @@ import kotlinx.parcelize.Parcelize
 @Entity(tableName = "book_table")
 data class Book (
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
+    @ColumnInfo(name = "bookId")
     var bookId: Long = 0,
 
     @ColumnInfo(name = "path")

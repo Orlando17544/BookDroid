@@ -60,7 +60,7 @@ class CategoryViewModel(
         }
     }
 
-    public fun displayDownloadableBook(downloadableBook: DownloadableBook) {
+    fun displayDownloadableBook(downloadableBook: DownloadableBook) {
         _navigateToSelectedDownloadableBook.value = downloadableBook;
     }
 

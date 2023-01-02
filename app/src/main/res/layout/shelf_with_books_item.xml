@@ -1,36 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    
     <data>
 
         <variable
             name="clickListenerOpen"
-            type="com.example.android.bookdroid.library.BookListener" />
+            type="com.example.android.bookdroid.library.ShelfWithBooksListener" />
 
         <variable
             name="clickListenerOptions"
-            type="com.example.android.bookdroid.library.BookListener" />
-
+            type="com.example.android.bookdroid.library.ShelfWithBooksListener" />
+        
         <variable
-            name="bookWithShelves"
-            type="com.example.android.bookdroid.database.BookWithShelves" />
-
+            name="shelfWithBooks"
+            type="com.example.android.bookdroid.database.ShelfWithBooks" />
+        
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:onClick="@{() -> clickListenerOpen.onClick(bookWithShelves)}"
-        android:paddingVertical="15dp">
+        android:onClick="@{() -> clickListenerOpen.onClick(shelfWithBooks)}">
 
         <ImageView
-            android:layout_weight="0.3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:scaleType="center"
-            app:imageUrl="@{bookWithShelves.book.cover}"/>
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_baseline_library_books_24" />
 
         <RelativeLayout
             android:layout_weight="0.5"
@@ -38,9 +37,10 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/shelf_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{bookWithShelves.book.title}"
+                android:text="@{shelfWithBooks.shelf.name}"
                 android:textStyle="bold"
                 android:textSize="@dimen/normal"
                 android:textColor="@color/emphasize"
@@ -50,7 +50,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{bookWithShelves.book.author}"
+                android:text="@{String.valueOf(shelfWithBooks.books.size()) + ` books`}"
                 android:textSize="@dimen/normal"
                 android:textColor="@color/deemphasize"
                 android:layout_alignParentBottom="true"
@@ -64,8 +64,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:src="@drawable/ic_baseline_more_vert_24"
-            android:onClick="@{() -> clickListenerOptions.onClick(bookWithShelves)}"/>
+            android:onClick="@{() -> clickListenerOptions.onClick(shelfWithBooks)}"/>
 
     </LinearLayout>
-
+    
 </layout>

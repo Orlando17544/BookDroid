@@ -1,14 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".library.ShelvesFragment">
+<layout>
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.android.bookdroid.library.ShelvesViewModel" />
+
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".library.ShelvesFragment">
 
-</FrameLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/shelvesWithBooks"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:listData="@{viewModel.shelvesWithBooks}"
+            tools:listitem="@layout/shelf_with_books_item"
+            android:layout_alignParentTop="true"
+            android:layout_above="@id/add_shelf"
+            />
+
+        <Button
+            android:id="@+id/add_shelf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create a new one"
+            android:textSize="@dimen/normal"
+            android:drawableLeft="@drawable/ic_baseline_edit_24"
+            android:padding="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            app:cornerRadius="25dp"/>
+
+    </RelativeLayout>
+
+</layout>

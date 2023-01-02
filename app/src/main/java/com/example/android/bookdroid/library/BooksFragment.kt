@@ -15,7 +15,10 @@ import com.example.android.bookdroid.databinding.FragmentBooksBinding
 import com.example.android.bookdroid.databinding.FragmentLibraryBinding
 import com.example.android.bookdroid.home.DownloadableBookAdapter
 import com.example.android.bookdroid.home.DownloadableBookListener
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.io.File
+
+const val EXTRA_MESSAGE_BOOK_WITH_SHELVES = "com.example.bookdroid.book_with_shelves"
 
 class BooksFragment : Fragment() {
 
@@ -44,8 +47,8 @@ class BooksFragment : Fragment() {
 
         binding.books.apply {
             layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false);
-            adapter = BookAdapter(BookListener { book ->
-                val uri = FileProvider.getUriForFile(context, application.applicationContext.getPackageName() + ".fileprovider", File(book.path));
+            adapter = BookAdapter(BookListener { bookWithShelves ->
+                val uri = FileProvider.getUriForFile(context, application.applicationContext.getPackageName() + ".fileprovider", File(bookWithShelves.book.path));
 
                 // Open file with user selected app
                 val intent = Intent()
@@ -53,6 +56,15 @@ class BooksFragment : Fragment() {
                 intent.setDataAndType(uri, "application/pdf")
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 startActivity(intent)
+            }, BookListener { bookWithShelves ->
+                val modalBottomSheet = OptionsModalBottomSheet()
+
+                val args = Bundle();
+                args.putParcelable(EXTRA_MESSAGE_BOOK_WITH_SHELVES, bookWithShelves);
+
+                modalBottomSheet.arguments = args;
+
+                modalBottomSheet.show(childFragmentManager, OptionsModalBottomSheet.TAG)
             })
         }
 
