@@ -21,11 +21,10 @@ class AddRemoveShelvesActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, activity_add_remove_shelves)
 
         val shelfAction: String = intent.getStringExtra(EXTRA_SHELF_ACTION) as String;
-        var bookWithShelves: BookWithShelves? = null;
+        var bookWithShelves: BookWithShelves = intent.getParcelableExtra<BookWithShelves>(EXTRA_MESSAGE_BOOK_WITH_SHELVES) as BookWithShelves;
 
         if (shelfAction.equals("remove")) {
             binding.topAppBar.title = "Remove the book from a shelf";
-            bookWithShelves = intent.getParcelableExtra<BookWithShelves>(EXTRA_MESSAGE_BOOK_WITH_SHELVES);
         } else {
             binding.topAppBar.title = "Add the book to a shelf";
         }
@@ -35,29 +34,23 @@ class AddRemoveShelvesActivity : AppCompatActivity() {
         }
 
         val dataSource = BookDatabase.getInstance(application).bookDatabaseDao;
-        val viewModelFactory = AddRemoveShelvesViewModelFactory(dataSource, bookWithShelves);
+        val viewModelFactory = AddRemoveShelvesViewModelFactory(dataSource, bookWithShelves, shelfAction);
 
         // Get a reference to the ViewModel associated with this fragment.
         viewModel =
             ViewModelProvider(
                 this, viewModelFactory).get(AddRemoveShelvesViewModel::class.java)
 
+        binding.shelves.apply {
+            layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false);
+            adapter = ShelfAdapter(ShelfListener { shelf ->
+                viewModel.executeActionInBook(shelf);
+                finish();
+            })
+        }
+
         binding.viewModel = viewModel;
 
         binding.lifecycleOwner = this;
-
-        binding.shelves.apply {
-            layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false);
-            adapter = ShelfAdapter(ShelfListener { shelfWithBooks ->
-                /*val uri = FileProvider.getUriForFile(context, application.applicationContext.getPackageName() + ".fileprovider", File(book.path));
-
-                // Open file with user selected app
-                val intent = Intent()
-                intent.action = Intent.ACTION_VIEW
-                intent.setDataAndType(uri, "application/pdf")
-                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                startActivity(intent)*/
-            })
-        }
     }
 }

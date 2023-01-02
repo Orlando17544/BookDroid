@@ -28,23 +28,6 @@ class OptionsViewModel(val bookWithShelves: BookWithShelves, val database: BookD
         }
     }
 
-    fun addToShelf(shelf: Shelf) {
-        viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                val newShelfBook = ShelfBookCrossRef();
-
-                newShelfBook.bookId = bookWithShelves.book.bookId;
-                newShelfBook.shelfId = shelf.shelveId;
-
-                database.insertShelfBook(newShelfBook);
-            }
-        }
-    }
-
-    fun removeFromShelf() {
-
-    }
-
     fun navigateToShelvesActivity(action: String) {
         _navigateToShelvesActivity.value = Pair(bookWithShelves, action);
     }

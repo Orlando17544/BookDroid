@@ -5,10 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android.bookdroid.database.Book
 import com.example.android.bookdroid.database.Shelf
 import com.example.android.bookdroid.databinding.ShelfItemBinding
 
-class ShelfAdapter(val clickListenerOpen: ShelfListener): ListAdapter<Shelf,
+class ShelfAdapter(val clickListener: ShelfListener): ListAdapter<Shelf,
         ShelfAdapter.ShelfViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShelfAdapter
@@ -20,7 +21,7 @@ class ShelfAdapter(val clickListenerOpen: ShelfListener): ListAdapter<Shelf,
 
     override fun onBindViewHolder(holder: ShelfAdapter.ShelfViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item, clickListenerOpen)
+        holder.bind(item, clickListener)
     }
 
     class ShelfViewHolder(private var binding:

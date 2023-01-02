@@ -34,9 +34,13 @@ interface BookDatabaseDao {
     @Delete
     suspend fun deleteShelf(shelf: Shelf)
 
-    @Query("SELECT * FROM shelf_table")
-    suspend fun getShelves(): List<Shelf>;
+    @Query("SELECT * FROM shelf_table WHERE shelfId NOT IN " +
+            "(SELECT shelfId FROM shelfbookcrossref WHERE bookId = :bookId)")
+    suspend fun getAvailableShelvesByBookId(bookId: Long): List<Shelf>;
 
     @Insert
     suspend fun insertShelfBook(shelfBookCrossRef: ShelfBookCrossRef)
+
+    @Delete
+    suspend fun deleteShelfBook(shelfBookCrossRef: ShelfBookCrossRef)
 }
