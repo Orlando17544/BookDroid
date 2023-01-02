@@ -17,6 +17,11 @@
         <variable
             name="shelfWithBooks"
             type="com.example.android.bookdroid.database.ShelfWithBooks" />
+
+        <import type="android.view.View"/>
+        <variable
+            name="view"
+            type="View" />
         
     </data>
 
@@ -24,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:onClick="@{() -> clickListenerOpen.onClick(shelfWithBooks)}">
+        android:onClick="@{() -> clickListenerOpen.onClick(shelfWithBooks, view)}">
 
         <ImageView
             android:layout_width="80dp"
@@ -59,12 +64,13 @@
         </RelativeLayout>
 
         <ImageView
+            android:id="@+id/options"
             android:layout_weight="0.3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:src="@drawable/ic_baseline_more_vert_24"
-            android:onClick="@{() -> clickListenerOptions.onClick(shelfWithBooks)}"/>
+            android:onClick="@{() -> clickListenerOptions.onClick(shelfWithBooks, options)}"/>
 
     </LinearLayout>
     

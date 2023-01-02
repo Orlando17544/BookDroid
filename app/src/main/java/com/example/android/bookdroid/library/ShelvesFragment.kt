@@ -4,13 +4,17 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
+import androidx.annotation.MenuRes
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.bookdroid.R
 import com.example.android.bookdroid.database.BookDatabase
+import com.example.android.bookdroid.database.ShelfWithBooks
 import com.example.android.bookdroid.databinding.AddShelfBinding
 import com.example.android.bookdroid.databinding.FragmentHomeBinding
 import com.example.android.bookdroid.databinding.FragmentShelvesBinding
@@ -48,14 +52,16 @@ class ShelvesFragment : Fragment() {
 
         binding.shelvesWithBooks.apply {
             layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false);
-            adapter = ShelfWithBooksAdapter(ShelfWithBooksListener { shelfWithBooks ->
+            adapter = ShelfWithBooksAdapter(ShelfWithBooksListener { shelfWithBooks, options ->
 
                 val intent = Intent(this.context, BooksActivity::class.java).apply {
                     putExtra(EXTRA_MESSAGE_SHELF_WITH_BOOKS, shelfWithBooks);
                 }
 
                 startActivity(intent);
-            }, ShelfWithBooksListener { shelfWithBooks ->
+            }, ShelfWithBooksListener { shelfWithBooks, options ->
+
+                showMenu(options, R.menu.shelf_options_menu, shelfWithBooks)
                 /*
                 val modalBottomSheet = OptionsModalBottomSheet()
 
@@ -89,5 +95,22 @@ class ShelvesFragment : Fragment() {
         })
 
         return binding.root;
+    }
+
+    private fun showMenu(v: View?, @MenuRes menuRes: Int, shelfWithBooks: ShelfWithBooks) {
+        val popup = PopupMenu(requireContext(), v)
+        popup.menuInflater.inflate(menuRes, popup.menu)
+
+        popup.setOnMenuItemClickListener { menuItem: MenuItem ->
+            // Respond to menu item click.
+            viewModel.deleteShelf(shelfWithBooks.shelf);
+
+            return@setOnMenuItemClickListener true;
+        }
+        popup.setOnDismissListener {
+            // Respond to popup being dismissed.
+        }
+        // Show the popup menu.
+        popup.show()
     }
 }

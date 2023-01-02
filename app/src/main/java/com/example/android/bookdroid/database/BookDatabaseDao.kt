@@ -43,4 +43,7 @@ interface BookDatabaseDao {
 
     @Delete
     suspend fun deleteShelfBook(shelfBookCrossRef: ShelfBookCrossRef)
+
+    @Query("SELECT * FROM shelfbookcrossref WHERE shelfId = :shelfId")
+    fun getShelfBookCrossRefsByShelfId(shelfId: Long): List<ShelfBookCrossRef>;
 }

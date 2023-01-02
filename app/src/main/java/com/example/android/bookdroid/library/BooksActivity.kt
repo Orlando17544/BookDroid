@@ -26,7 +26,9 @@ class BooksActivity : AppCompatActivity() {
 
         val shelfWithBooks: ShelfWithBooks= intent.getParcelableExtra<ShelfWithBooks>(EXTRA_MESSAGE_SHELF_WITH_BOOKS) as ShelfWithBooks;
 
-        binding.topAppBar.title = "Select a book";
+        binding.topAppBar.title = shelfWithBooks.shelf.name.replaceFirstChar {
+            it.uppercaseChar();
+        }
 
         binding.topAppBar.setNavigationOnClickListener {
             finish();

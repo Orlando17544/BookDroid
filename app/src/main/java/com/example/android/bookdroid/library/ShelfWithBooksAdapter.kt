@@ -1,6 +1,7 @@
 package com.example.android.bookdroid.library
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -48,6 +49,6 @@ class ShelfWithBooksAdapter(val clickListenerOpen: ShelfWithBooksListener, val c
     }
 }
 
-class ShelfWithBooksListener(val clickListener: (shelfWithBooks: ShelfWithBooks) -> Unit) {
-    fun onClick(shelfWithBooks: ShelfWithBooks) = clickListener(shelfWithBooks)
+class ShelfWithBooksListener(val clickListener: (shelfWithBooks: ShelfWithBooks, options: View?) -> Unit) {
+    fun onClick(shelfWithBooks: ShelfWithBooks, options: View?) = clickListener(shelfWithBooks, options)
 }

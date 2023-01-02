@@ -24,4 +24,18 @@ class ShelvesViewModel(val database: BookDatabaseDao) : ViewModel() {
             }
         }
     }
+
+    fun deleteShelf(shelf: Shelf) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                database.deleteShelf(shelf);
+
+                val shelfBookCrossRefs = database.getShelfBookCrossRefsByShelfId(shelf.shelveId);
+
+                for (shelfBookCrossRef in shelfBookCrossRefs) {
+                    database.deleteShelfBook(shelfBookCrossRef);
+                }
+            }
+        }
+    }
 }
