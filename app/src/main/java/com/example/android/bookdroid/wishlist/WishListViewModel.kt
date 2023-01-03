@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
 class WishListViewModel(val database: BookDatabaseDao) : ViewModel() {
     val wishList : LiveData<List<Wish>> = database.getWishList();
 
-    fun getBookByBookId(isbn: Long): MutableLiveData<Book?> {
+    fun getBookByIsbn(isbn: String): MutableLiveData<Book?> {
         val result = MutableLiveData<Book?>();
         viewModelScope.launch {
             val book = database.getBookByIsbn(isbn);

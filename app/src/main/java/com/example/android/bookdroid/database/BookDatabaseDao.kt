@@ -12,10 +12,10 @@ interface BookDatabaseDao {
     suspend fun deleteBook(book: Book)
 
     @Query("SELECT identifier FROM book_id_table WHERE isbn = :isbn")
-    suspend fun getBookIdentifierByIsbn(isbn: Long): String;
+    suspend fun getBookIdentifierByIsbn(isbn: String): String;
 
     @Query("SELECT * FROM book_table WHERE isbn = :isbn")
-    suspend fun getBookByIsbn(isbn: Long): Book?;
+    suspend fun getBookByIsbn(isbn: String): Book?;
 
     @Transaction
     @Query("SELECT * FROM shelf_table")
@@ -50,6 +50,12 @@ interface BookDatabaseDao {
     @Query("SELECT * FROM wish_table")
     fun getWishList(): LiveData<List<Wish>>;
 
+    @Insert
+    suspend fun insertWish(wish: Wish)
+
     @Delete
     suspend fun deleteWish(wish: Wish);
+
+    @Query("SELECT * FROM wish_table WHERE isbn = :isbn")
+    suspend fun getWishByIsbn(isbn: String): Wish
 }

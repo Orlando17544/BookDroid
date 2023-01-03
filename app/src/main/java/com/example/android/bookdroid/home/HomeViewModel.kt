@@ -18,9 +18,9 @@ enum class DownloadableBookApiStatus { LOADING, ERROR, DONE }
 
 class HomeViewModel : ViewModel() {
 
-    private val _educationBooks = MutableLiveData<List<DownloadableBook>>();
+    private val _educationBooks = MutableLiveData<List<DownloadableBook>?>();
 
-    val educationBooks: LiveData<List<DownloadableBook>>
+    val educationBooks: LiveData<List<DownloadableBook>?>
         get() = _educationBooks
 
     private val _educationStatus = MutableLiveData<DownloadableBookApiStatus>()
@@ -28,9 +28,9 @@ class HomeViewModel : ViewModel() {
     val educationStatus: LiveData<DownloadableBookApiStatus>
         get() = _educationStatus
 
-    private val _fictionBooks = MutableLiveData<List<DownloadableBook>>();
+    private val _fictionBooks = MutableLiveData<List<DownloadableBook>?>();
 
-    val fictionBooks: LiveData<List<DownloadableBook>>
+    val fictionBooks: LiveData<List<DownloadableBook>?>
         get() = _fictionBooks
 
     private val _fictionStatus = MutableLiveData<DownloadableBookApiStatus>()
@@ -38,9 +38,9 @@ class HomeViewModel : ViewModel() {
     val fictionStatus: LiveData<DownloadableBookApiStatus>
         get() = _fictionStatus
 
-    private val _artBooks = MutableLiveData<List<DownloadableBook>>();
+    private val _artBooks = MutableLiveData<List<DownloadableBook>?>();
 
-    val artBooks: LiveData<List<DownloadableBook>>
+    val artBooks: LiveData<List<DownloadableBook>?>
         get() = _artBooks
 
     private val _artStatus = MutableLiveData<DownloadableBookApiStatus>()
@@ -48,9 +48,9 @@ class HomeViewModel : ViewModel() {
     val artStatus: LiveData<DownloadableBookApiStatus>
         get() = _artStatus
 
-    private val _religionBooks = MutableLiveData<List<DownloadableBook>>();
+    private val _religionBooks = MutableLiveData<List<DownloadableBook>?>();
 
-    val religionBooks: LiveData<List<DownloadableBook>>
+    val religionBooks: LiveData<List<DownloadableBook>?>
         get() = _religionBooks
 
     private val _religionStatus = MutableLiveData<DownloadableBookApiStatus>()
@@ -68,9 +68,9 @@ class HomeViewModel : ViewModel() {
     val navigateToSelectedDownloadableBook: LiveData<DownloadableBook>
         get() = _navigateToSelectedDownloadableBook
 
-    private val _navigateToLibrary = MutableLiveData<DownloadableBook>();
+    private val _navigateToLibrary = MutableLiveData<DownloadableBook?>();
 
-    val navigateToLibrary: LiveData<DownloadableBook>
+    val navigateToLibrary: LiveData<DownloadableBook?>
         get() = _navigateToLibrary
 
     init {
@@ -110,7 +110,7 @@ class HomeViewModel : ViewModel() {
 
                         for (i in keys?.indices!!) {
                             keys[i] = keys[i].replace("ISBN:", "");
-                            values?.get(i)?.isbn = keys[i].toLong();
+                            values?.get(i)?.isbn = keys[i];
                         }
 
                         _educationBooks.value = values;
@@ -145,7 +145,7 @@ class HomeViewModel : ViewModel() {
 
                         for (i in keys?.indices!!) {
                             keys[i] = keys[i].replace("ISBN:", "");
-                            values?.get(i)?.isbn = keys[i].toLong();
+                            values?.get(i)?.isbn = keys[i];
                         }
 
                         _fictionBooks.value = values;
@@ -180,7 +180,7 @@ class HomeViewModel : ViewModel() {
 
                         for (i in keys?.indices!!) {
                             keys[i] = keys[i].replace("ISBN:", "");
-                            values?.get(i)?.isbn = keys[i].toLong();
+                            values?.get(i)?.isbn = keys[i];
                         }
 
                         _artBooks.value = values;
@@ -215,7 +215,7 @@ class HomeViewModel : ViewModel() {
 
                         for (i in keys?.indices!!) {
                             keys[i] = keys[i].replace("ISBN:", "");
-                            values?.get(i)?.isbn = keys[i].toLong();
+                            values?.get(i)?.isbn = keys[i];
                         }
 
                         _religionBooks.value = values;

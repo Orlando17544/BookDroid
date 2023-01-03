@@ -8,7 +8,7 @@ import com.example.android.bookdroid.network.DownloadableBook
 
 class DownloadableBookViewModelFactory(
     private val downloadableBook: DownloadableBook?,
-    private val isbn: Long?,
+    private val isbn: String?,
     private val dataSource: BookDatabaseDao,
     private val application: Application
 ): ViewModelProvider.Factory {

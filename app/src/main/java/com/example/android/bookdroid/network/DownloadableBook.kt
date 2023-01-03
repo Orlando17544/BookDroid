@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class DownloadableBook (
-    var isbn: Long?,
+    var isbn: String?,
     val cover: Map<String, String>?,
     val title: String?,
     @Json(name = "publish_date") val publishDate: String?,

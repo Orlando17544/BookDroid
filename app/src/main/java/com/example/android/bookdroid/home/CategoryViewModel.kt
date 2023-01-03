@@ -15,9 +15,9 @@ class CategoryViewModel(
     val downloadableBooksParcelable: List<Parcelable>?, val category: String
 ) : ViewModel() {
 
-    private var _downloadableBooks = MutableLiveData<List<DownloadableBook>>();
+    private var _downloadableBooks = MutableLiveData<List<DownloadableBook>?>();
 
-    val downloadableBooks: LiveData<List<DownloadableBook>>
+    val downloadableBooks: LiveData<List<DownloadableBook>?>
         get() = _downloadableBooks
 
     private val _downloadableBookStatus = MutableLiveData<DownloadableBookApiStatus>()
@@ -101,7 +101,7 @@ class CategoryViewModel(
 
                         for (i in keys?.indices!!) {
                             keys[i] = keys[i].replace("ISBN:", "");
-                            values?.get(i)?.isbn = keys[i].toLong();
+                            values?.get(i)?.isbn = keys[i];
                         }
 
                         _downloadableBooks.value = values;
@@ -136,7 +136,7 @@ class CategoryViewModel(
 
                         for (i in keys?.indices!!) {
                             keys[i] = keys[i].replace("ISBN:", "");
-                            values?.get(i)?.isbn = keys[i].toLong();
+                            values?.get(i)?.isbn = keys[i];
                         }
 
                         _downloadableBooks.value = values;
@@ -171,7 +171,7 @@ class CategoryViewModel(
 
                         for (i in keys?.indices!!) {
                             keys[i] = keys[i].replace("ISBN:", "");
-                            values?.get(i)?.isbn = keys[i].toLong();
+                            values?.get(i)?.isbn = keys[i];
                         }
 
                         _downloadableBooks.value = values;
@@ -206,7 +206,7 @@ class CategoryViewModel(
 
                         for (i in keys?.indices!!) {
                             keys[i] = keys[i].replace("ISBN:", "");
-                            values?.get(i)?.isbn = keys[i].toLong();
+                            values?.get(i)?.isbn = keys[i];
                         }
 
                         _downloadableBooks.value = values;
@@ -241,7 +241,7 @@ class CategoryViewModel(
 
                         for (i in keys?.indices!!) {
                             keys[i] = keys[i].replace("ISBN:", "");
-                            values?.get(i)?.isbn = keys[i].toLong();
+                            values?.get(i)?.isbn = keys[i];
                         }
 
                         _downloadableBooks.value = values;
@@ -276,7 +276,7 @@ class CategoryViewModel(
 
                         for (i in keys?.indices!!) {
                             keys[i] = keys[i].replace("ISBN:", "");
-                            values?.get(i)?.isbn = keys[i].toLong();
+                            values?.get(i)?.isbn = keys[i];
                         }
 
                         _downloadableBooks.value = values;
@@ -311,7 +311,7 @@ class CategoryViewModel(
 
                         for (i in keys?.indices!!) {
                             keys[i] = keys[i].replace("ISBN:", "");
-                            values?.get(i)?.isbn = keys[i].toLong();
+                            values?.get(i)?.isbn = keys[i];
                         }
 
                         _downloadableBooks.value = values;
@@ -346,7 +346,7 @@ class CategoryViewModel(
 
                         for (i in keys?.indices!!) {
                             keys[i] = keys[i].replace("ISBN:", "");
-                            values?.get(i)?.isbn = keys[i].toLong();
+                            values?.get(i)?.isbn = keys[i];
                         }
 
                         _downloadableBooks.value = values;
@@ -381,7 +381,7 @@ class CategoryViewModel(
 
                         for (i in keys?.indices!!) {
                             keys[i] = keys[i].replace("ISBN:", "");
-                            values?.get(i)?.isbn = keys[i].toLong();
+                            values?.get(i)?.isbn = keys[i];
                         }
 
                         _downloadableBooks.value = values;
@@ -416,7 +416,7 @@ class CategoryViewModel(
 
                         for (i in keys?.indices!!) {
                             keys[i] = keys[i].replace("ISBN:", "");
-                            values?.get(i)?.isbn = keys[i].toLong();
+                            values?.get(i)?.isbn = keys[i];
                         }
 
                         _downloadableBooks.value = values;
@@ -451,7 +451,7 @@ class CategoryViewModel(
 
                         for (i in keys?.indices!!) {
                             keys[i] = keys[i].replace("ISBN:", "");
-                            values?.get(i)?.isbn = keys[i].toLong();
+                            values?.get(i)?.isbn = keys[i];
                         }
 
                         _downloadableBooks.value = values;
@@ -486,7 +486,7 @@ class CategoryViewModel(
 
                         for (i in keys?.indices!!) {
                             keys[i] = keys[i].replace("ISBN:", "");
-                            values?.get(i)?.isbn = keys[i].toLong();
+                            values?.get(i)?.isbn = keys[i];
                         }
 
                         _downloadableBooks.value = values;
@@ -521,7 +521,7 @@ class CategoryViewModel(
 
                         for (i in keys?.indices!!) {
                             keys[i] = keys[i].replace("ISBN:", "");
-                            values?.get(i)?.isbn = keys[i].toLong();
+                            values?.get(i)?.isbn = keys[i];
                         }
 
                         _downloadableBooks.value = values;
@@ -556,7 +556,7 @@ class CategoryViewModel(
 
                         for (i in keys?.indices!!) {
                             keys[i] = keys[i].replace("ISBN:", "");
-                            values?.get(i)?.isbn = keys[i].toLong();
+                            values?.get(i)?.isbn = keys[i];
                         }
 
                         _downloadableBooks.value = values;
@@ -591,7 +591,7 @@ class CategoryViewModel(
 
                         for (i in keys?.indices!!) {
                             keys[i] = keys[i].replace("ISBN:", "");
-                            values?.get(i)?.isbn = keys[i].toLong();
+                            values?.get(i)?.isbn = keys[i];
                         }
 
                         _downloadableBooks.value = values;
@@ -626,7 +626,7 @@ class CategoryViewModel(
 
                         for (i in keys?.indices!!) {
                             keys[i] = keys[i].replace("ISBN:", "");
-                            values?.get(i)?.isbn = keys[i].toLong();
+                            values?.get(i)?.isbn = keys[i];
                         }
 
                         _downloadableBooks.value = values;
@@ -661,7 +661,7 @@ class CategoryViewModel(
 
                         for (i in keys?.indices!!) {
                             keys[i] = keys[i].replace("ISBN:", "");
-                            values?.get(i)?.isbn = keys[i].toLong();
+                            values?.get(i)?.isbn = keys[i];
                         }
 
                         _downloadableBooks.value = values;
@@ -696,7 +696,7 @@ class CategoryViewModel(
 
                         for (i in keys?.indices!!) {
                             keys[i] = keys[i].replace("ISBN:", "");
-                            values?.get(i)?.isbn = keys[i].toLong();
+                            values?.get(i)?.isbn = keys[i];
                         }
 
                         _downloadableBooks.value = values;
@@ -731,7 +731,7 @@ class CategoryViewModel(
 
                         for (i in keys?.indices!!) {
                             keys[i] = keys[i].replace("ISBN:", "");
-                            values?.get(i)?.isbn = keys[i].toLong();
+                            values?.get(i)?.isbn = keys[i];
                         }
 
                         _downloadableBooks.value = values;

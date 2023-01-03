@@ -12,7 +12,7 @@ data class Wish (
     var wishId: Long = 0,
 
     @ColumnInfo(name = "isbn")
-    var isbn: Long = 0,
+    var isbn: String = "",
 
     @ColumnInfo(name = "title")
     var title: String? = "",

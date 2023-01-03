@@ -8,6 +8,7 @@ import androidx.lifecycle.*
 import com.example.android.bookdroid.BookApi
 import com.example.android.bookdroid.database.Book
 import com.example.android.bookdroid.database.BookDatabaseDao
+import com.example.android.bookdroid.database.Wish
 import com.example.android.bookdroid.network.DownloadableBook
 import com.squareup.moshi.Types
 import kotlinx.coroutines.Dispatchers
@@ -25,7 +26,7 @@ import java.lang.reflect.Type
 
 class DownloadableBookViewModel(
     var downloadableBook: DownloadableBook?,
-    val isbn: Long?,
+    val isbn: String?,
     val database: BookDatabaseDao,
     application: Application) : AndroidViewModel(application) {
     lateinit var identifier: String;
@@ -34,6 +35,11 @@ class DownloadableBookViewModel(
 
     val downloadState: LiveData<String>
         get() = _downloadState
+
+    private var _wishState = MutableLiveData<String>();
+
+    val wishState: LiveData<String>
+        get() = _wishState
 
     private var _downloadableBookLive = MutableLiveData<DownloadableBook>();
 
@@ -73,7 +79,7 @@ class DownloadableBookViewModel(
 
                             for (i in keys?.indices!!) {
                                 keys[i] = keys[i].replace("ISBN:", "");
-                                values?.get(i)?.isbn = keys[i].toLong();
+                                values?.get(i)?.isbn = keys[i];
                             }
 
                             _downloadableBookLive.value = values?.get(0);
@@ -92,6 +98,7 @@ class DownloadableBookViewModel(
             withContext(Dispatchers.IO) {
                 getIdentifier();
                 checkBook();
+                checkWish();
             }
         }
     }
@@ -110,7 +117,19 @@ class DownloadableBookViewModel(
             } else {
                 _downloadState.postValue("downloaded");
             }
-        };
+        }
+    }
+
+    suspend fun checkWish() {
+        downloadableBookLive.value?.isbn?.let {
+            val wish = database.getWishByIsbn(it);
+
+            if (wish == null) {
+                _wishState.postValue("deleted");
+            } else {
+                _wishState.postValue("added");
+            }
+        }
     }
 
     fun downloadBook() {
@@ -119,9 +138,10 @@ class DownloadableBookViewModel(
             withContext(Dispatchers.IO) {
                 val responseBody = BookApi.retrofitService.downloadFile("https://archive.org/download/" + identifier + "/" + identifier + ".pdf").body();
                 if (responseBody != null) {
-                    val filePath = downloadableBook?.let { generateFilePath(it) }
+                    val filePath = downloadableBookLive.value?.let { generateFilePath(it) }
                     filePath?.let { saveFile(responseBody, it) }
                     filePath?.let { insertBook(it) }
+                    removeFromWishList();
                     _downloadState.postValue("downloaded");
                 } else {
                     _downloadState.postValue("unavailable")
@@ -131,8 +151,8 @@ class DownloadableBookViewModel(
     }
 
     fun generateFilePath(downloadableBook: DownloadableBook): String {
-        downloadableBook.title?.let {
-            val dir: File = File(getApplication<Application>().getFilesDir().absolutePath, downloadableBook.title)
+        downloadableBookLive.value?.title?.let {
+            val dir: File = File(getApplication<Application>().getFilesDir().absolutePath, it)
             return dir.absolutePath;
         }
         return "";
@@ -168,18 +188,46 @@ class DownloadableBookViewModel(
         val newBook = Book();
 
         newBook.path = filePath;
-        newBook.isbn = downloadableBook?.isbn!!;
+        newBook.isbn = downloadableBookLive.value?.isbn!!;
         newBook.identifier = identifier;
-        newBook.cover = downloadableBook?.cover?.get("medium");
-        newBook.title = downloadableBook?.title;
-        newBook.author = downloadableBook?.authors?.get(0)?.get("name");
+        newBook.cover = downloadableBookLive.value?.cover?.get("medium");
+        newBook.title = downloadableBookLive.value?.title;
+        newBook.author = downloadableBookLive.value?.authors?.get(0)?.get("name");
         database.insertBook(newBook);
     }
 
     fun openBook() {
         viewModelScope.launch {
-            downloadableBook?.isbn?.let {
+            downloadableBookLive.value?.isbn?.let {
                 _book.value = database.getBookByIsbn(it)
+            }
+        }
+    }
+
+    fun addToWishList() {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                val newWish = Wish();
+
+                newWish.isbn = downloadableBookLive.value?.isbn!!;
+                newWish.title = downloadableBookLive.value?.title;
+                newWish.author = downloadableBookLive.value!!.authors?.get(0)?.get("name");
+
+                database.insertWish(newWish);
+                _wishState.postValue("added");
+            }
+        }
+    }
+
+    fun removeFromWishList() {
+        viewModelScope.launch{
+            withContext(Dispatchers.IO) {
+                val isbn = downloadableBookLive.value?.isbn;
+
+                val wish = database.getWishByIsbn(isbn!!);
+
+                database.deleteWish(wish);
+                _wishState.postValue("deleted");
             }
         }
     }

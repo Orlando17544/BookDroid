@@ -238,14 +238,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
-                    android:layout_marginTop="50dp"
-                    android:text="@{viewModel.downloadState == &quot;downloaded&quot; ? &quot;Open&quot; : viewModel.downloadState == &quot;downloading&quot; ? &quot;Downloading&quot; : viewModel.downloadState == &quot;unavailable&quot; ? &quot;Unavailable&quot; : &quot;Download&quot;}"
+                    android:layout_marginTop="10dp"
                     android:backgroundTint="@color/select"
-                    android:onClick="@{() -> viewModel.downloadState == &quot;downloaded&quot;  ? viewModel.openBook() : viewModel.downloadBook()}"
                     android:enabled="@{viewModel.downloadState == &quot;downloading&quot; ? false : viewModel.downloadState == &quot;unavailable&quot; ? false : true}"
+                    android:onClick="@{() -> viewModel.downloadState == &quot;downloaded&quot;  ? viewModel.openBook() : viewModel.downloadBook()}"
+                    android:text="@{viewModel.downloadState == &quot;downloaded&quot; ? &quot;Open&quot; : viewModel.downloadState == &quot;downloading&quot; ? &quot;Downloading&quot; : viewModel.downloadState == &quot;unavailable&quot; ? &quot;Unavailable&quot; : &quot;Download&quot;}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/divider2" />
+                    app:layout_constraintTop_toBottomOf="@+id/button2" />
 
                 <TextView
                     android:id="@+id/textView13"
@@ -301,6 +301,21 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     app:layout_constraintGuide_percent="0.5" />
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Add to wishlist"
+                    android:textColor="@color/select"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider2"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:backgroundTint="@color/white"
+                    android:enabled="@{viewModel.downloadState == &quot;downloading&quot; ? false : viewModel.downloadState == &quot;unavailable&quot; ? false : viewModel.downloadState == &quot;downloaded&quot; ? false : viewModel.wishState == &quot;added&quot; ? false : true}"
+                    android:onClick="@{() -> viewModel.addToWishList()}"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

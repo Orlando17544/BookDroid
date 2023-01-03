@@ -11,7 +11,7 @@ data class BookIdentifier(
     var id: Long = 0,
 
     @ColumnInfo(name = "isbn")
-    var isbn: Long = 0,
+    var isbn: String = "",
 
     @ColumnInfo(name = "identifier")
     var identifier: String = "",

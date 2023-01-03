@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.bookdroid.R
+import com.example.android.bookdroid.database.Book
 import com.example.android.bookdroid.database.BookDatabase
 import com.example.android.bookdroid.database.ShelfWithBooks
 import com.example.android.bookdroid.database.Wish
@@ -44,7 +45,8 @@ class WishListFragment : Fragment() {
         // Get a reference to the ViewModel associated with this fragment.
         viewModel =
             ViewModelProvider(
-                this, viewModelFactory).get(WishListViewModel::class.java)
+                this, viewModelFactory
+            ).get(WishListViewModel::class.java)
 
         binding.lifecycleOwner = viewLifecycleOwner;
 
@@ -55,9 +57,16 @@ class WishListFragment : Fragment() {
             adapter = WishListAdapter(WishListener { wish, options ->
 
                 val intent = Intent(context, DownloadableBookActivity::class.java).apply {
-                    viewModel.getBookByBookId(wish.isbn).observe(viewLifecycleOwner, Observer{
-                        putExtra(EXTRA_MESSAGE_BOOK, it);
-                    })
+                    val book = Book();
+
+                    book.isbn = wish.isbn;
+                    book.title = wish.title;
+                    book.author = wish.author;
+
+                    putExtra(EXTRA_MESSAGE_BOOK, book);
+
+                    println("Prueba: " + book.isbn);
+
                 }
                 startActivity(intent);
 

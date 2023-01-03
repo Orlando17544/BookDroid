@@ -20,7 +20,7 @@ data class Book (
     var path: String = "",
 
     @ColumnInfo(name = "isbn")
-    var isbn: Long = 0,
+    var isbn: String = "",
 
     @ColumnInfo(name = "identifier")
     var identifier: String = "",

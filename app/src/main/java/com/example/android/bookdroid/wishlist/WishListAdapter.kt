@@ -49,6 +49,6 @@ class WishListAdapter(val clickListenerOpen: WishListener, val clickListenerOpti
     }
 }
 
-class WishListener(val clickListener: (wish: Wish, options: View) -> Unit) {
-    fun onClick(wish: Wish, options: View) = clickListener(wish, options)
+class WishListener(val clickListener: (wish: Wish, options: View?) -> Unit) {
+    fun onClick(wish: Wish, options: View?) = clickListener(wish, options)
 }
