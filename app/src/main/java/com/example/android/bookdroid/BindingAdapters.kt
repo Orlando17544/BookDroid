@@ -25,10 +25,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.android.bookdroid.database.Book
-import com.example.android.bookdroid.database.BookWithShelves
-import com.example.android.bookdroid.database.Shelf
-import com.example.android.bookdroid.database.ShelfWithBooks
+import com.example.android.bookdroid.database.*
 import com.example.android.bookdroid.home.DownloadableBookAdapter
 import com.example.android.bookdroid.home.DownloadableBookApiStatus
 import com.example.android.bookdroid.home.DownloadableBookApiStatus.*
@@ -37,6 +34,7 @@ import com.example.android.bookdroid.library.BookWithShelvesAdapter
 import com.example.android.bookdroid.library.ShelfAdapter
 import com.example.android.bookdroid.library.ShelfWithBooksAdapter
 import com.example.android.bookdroid.network.DownloadableBook
+import com.example.android.bookdroid.wishlist.WishListAdapter
 import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
 
 /**
@@ -69,6 +67,12 @@ fun bindRecyclerView4(recyclerView: RecyclerView, data: List<Shelf>?) {
 @BindingAdapter("listData")
 fun bindRecyclerView5(recyclerView: RecyclerView, data: List<Book>?) {
     val adapter = recyclerView.adapter as BookAdapter
+    adapter.submitList(data)
+}
+
+@BindingAdapter("listData")
+fun bindRecyclerView6(recyclerView: RecyclerView, data: List<Wish>?) {
+    val adapter = recyclerView.adapter as WishListAdapter
     adapter.submitList(data)
 }
 

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="clickListenerOpen"
+            type="com.example.android.bookdroid.wishlist.WishListener" />
+
+        <variable
+            name="clickListenerOptions"
+            type="com.example.android.bookdroid.wishlist.WishListener" />
+
+        <variable
+            name="wish"
+            type="com.example.android.bookdroid.database.Wish" />
+
+        <variable
+            name="view"
+            type="android.view.View" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:onClick="@{() -> clickListenerOpen.onClick(wish, view)}"
+        android:paddingVertical="15dp">
+
+        <ImageView
+            android:layout_weight="0.3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:scaleType="center"
+            android:src="@drawable/ic_baseline_favorite_24"/>
+
+        <RelativeLayout
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{wish.title}"
+                android:textStyle="bold"
+                android:textSize="@dimen/normal"
+                android:textColor="@color/emphasize"
+                android:layout_alignParentTop="true"
+                android:paddingVertical="15dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{wish.author}"
+                android:textSize="@dimen/normal"
+                android:textColor="@color/deemphasize"
+                android:layout_alignParentBottom="true"
+                android:paddingVertical="15dp"/>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/options"
+            android:layout_weight="0.3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_baseline_more_vert_24"
+            android:onClick="@{() -> clickListenerOptions.onClick(wish, options)}"/>
+
+    </LinearLayout>
+
+</layout>

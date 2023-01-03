@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".WishListFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        
+        <variable
+            name="viewModel"
+            type="com.example.android.bookdroid.wishlist.WishListViewModel" />
+        
+    </data>
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".WishListFragment">
 
-</FrameLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/wish_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:listData="@{viewModel.wishList}"
+            tools:listitem="@layout/wish_list_item"/>
+
+    </LinearLayout>
+    
+</layout>

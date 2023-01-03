@@ -77,7 +77,6 @@ class DownloadableBookViewModel(
                             }
 
                             _downloadableBookLive.value = values?.get(0);
-                            _downloadState.value = "downloaded";
                         }
 
                         override fun onFailure(call: Call<String>, t: Throwable) {
@@ -98,12 +97,12 @@ class DownloadableBookViewModel(
     }
 
     suspend fun getIdentifier() {
-        downloadableBook?.isbn?.let {
+        downloadableBookLive.value?.isbn?.let {
             identifier = database.getBookIdentifierByIsbn(it) };
     }
 
     suspend fun checkBook() {
-        downloadableBook?.isbn?.let {
+        downloadableBookLive.value?.isbn?.let {
             val book = database.getBookByIsbn(it);
 
             if (book == null) {

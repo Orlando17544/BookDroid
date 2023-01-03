@@ -62,15 +62,7 @@ class ShelvesFragment : Fragment() {
             }, ShelfWithBooksListener { shelfWithBooks, options ->
 
                 showMenu(options, R.menu.shelf_options_menu, shelfWithBooks)
-                /*
-                val modalBottomSheet = OptionsModalBottomSheet()
 
-                val args = Bundle();
-                args.putParcelable(EXTRA_MESSAGE_BOOK, book);
-
-                modalBottomSheet.arguments = args;
-
-                modalBottomSheet.show(childFragmentManager, OptionsModalBottomSheet.TAG)*/
             })
         }
 

@@ -17,9 +17,6 @@ interface BookDatabaseDao {
     @Query("SELECT * FROM book_table WHERE isbn = :isbn")
     suspend fun getBookByIsbn(isbn: Long): Book?;
 
-    @Query("SELECT * FROM book_table")
-    fun getBooks(): LiveData<List<Book>>;
-
     @Transaction
     @Query("SELECT * FROM shelf_table")
     fun getShelvesWithBooks(): LiveData<List<ShelfWithBooks>>
@@ -49,4 +46,10 @@ interface BookDatabaseDao {
 
     @Query("SELECT * FROM shelfbookcrossref WHERE bookId = :bookId")
     fun getShelfBookCrossRefsByBookId(bookId: Long): List<ShelfBookCrossRef>;
+
+    @Query("SELECT * FROM wish_table")
+    fun getWishList(): LiveData<List<Wish>>;
+
+    @Delete
+    suspend fun deleteWish(wish: Wish);
 }

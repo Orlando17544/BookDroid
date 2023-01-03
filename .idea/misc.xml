@@ -11,6 +11,7 @@
         <entry key="app/src/main/res/drawable/ic_baseline_bookmark_add_24.xml" value="0.1965" />
         <entry key="app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.127" />
         <entry key="app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.127" />
+        <entry key="app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.208" />
         <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1965" />
         <entry key="app/src/main/res/drawable/ic_baseline_library_books_24.xml" value="0.1965" />
         <entry key="app/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.127" />
@@ -26,18 +27,22 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.17395833333333333" />
         <entry key="app/src/main/res/layout/add_shelf.xml" value="0.17755825734549138" />
         <entry key="app/src/main/res/layout/book_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/book_with_shelves_item.xml" value="0.3591485507246377" />
         <entry key="app/src/main/res/layout/downloadable_book_item.xml" value="0.16032608695652173" />
         <entry key="app/src/main/res/layout/fragment_books.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_library.xml" value="0.2833333333333333" />
         <entry key="app/src/main/res/layout/fragment_shelves.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_wish_list.xml" value="0.3591485507246377" />
         <entry key="app/src/main/res/layout/horizontal_book_item.xml" value="0.3591485507246377" />
         <entry key="app/src/main/res/layout/options_modal_bottom_sheet.xml" value="0.3591485507246377" />
         <entry key="app/src/main/res/layout/shelf_item.xml" value="0.34608030592734224" />
         <entry key="app/src/main/res/layout/shelf_with_books_item.xml" value="0.16032608695652173" />
         <entry key="app/src/main/res/layout/vertical_book_item.xml" value="0.3591485507246377" />
+        <entry key="app/src/main/res/layout/wish_list_item.xml" value="0.3591485507246377" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.1875" />
         <entry key="app/src/main/res/menu/shelf_options_menu.xml" value="0.22708333333333333" />
+        <entry key="app/src/main/res/menu/wish_options_menu.xml" value="0.228125" />
         <entry key="app/src/main/res/xml/provider_paths.xml" value="0.16032608695652173" />
       </map>
     </option>
