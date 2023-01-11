@@ -104,12 +104,12 @@ class DownloadableBookViewModel(
     }
 
     suspend fun getIdentifier() {
-        downloadableBookLive.value?.isbn?.let {
+        _downloadableBookLive.value?.isbn?.let {
             identifier = database.getBookIdentifierByIsbn(it) };
     }
 
     suspend fun checkBook() {
-        downloadableBookLive.value?.isbn?.let {
+        _downloadableBookLive.value?.isbn?.let {
             val book = database.getBookByIsbn(it);
 
             if (book == null) {
@@ -121,7 +121,7 @@ class DownloadableBookViewModel(
     }
 
     suspend fun checkWish() {
-        downloadableBookLive.value?.isbn?.let {
+        _downloadableBookLive.value?.isbn?.let {
             val wish = database.getWishByIsbn(it);
 
             if (wish == null) {
@@ -138,7 +138,7 @@ class DownloadableBookViewModel(
             withContext(Dispatchers.IO) {
                 val responseBody = BookApi.retrofitService.downloadFile("https://archive.org/download/" + identifier + "/" + identifier + ".pdf").body();
                 if (responseBody != null) {
-                    val filePath = downloadableBook?.let { generateFilePath(it) }
+                    val filePath = _downloadableBookLive?.value?.let { generateFilePath(it) }
                     filePath?.let { saveFile(responseBody, it) }
                     filePath?.let { insertBook(it) }
 
@@ -155,7 +155,7 @@ class DownloadableBookViewModel(
     }
 
     suspend fun hasWish(): Boolean {
-        val isbn = downloadableBookLive.value?.isbn;
+        val isbn = _downloadableBookLive.value?.isbn;
 
         val wish = database.getWishByIsbn(isbn!!);
 
@@ -167,7 +167,7 @@ class DownloadableBookViewModel(
     }
 
     fun generateFilePath(downloadableBook: DownloadableBook): String {
-        downloadableBookLive.value?.title?.let {
+        _downloadableBookLive.value?.title?.let {
             val dir: File = File(getApplication<Application>().getFilesDir().absolutePath, it)
             return dir.absolutePath;
         }
@@ -204,17 +204,17 @@ class DownloadableBookViewModel(
         val newBook = Book();
 
         newBook.path = filePath;
-        newBook.isbn = downloadableBookLive.value?.isbn!!;
+        newBook.isbn = _downloadableBookLive.value?.isbn!!;
         newBook.identifier = identifier;
-        newBook.cover = downloadableBookLive.value?.cover?.get("medium");
-        newBook.title = downloadableBookLive.value?.title;
-        newBook.author = downloadableBookLive.value?.authors?.get(0)?.get("name");
+        newBook.cover = _downloadableBookLive.value?.cover?.get("medium");
+        newBook.title = _downloadableBookLive.value?.title;
+        newBook.author = _downloadableBookLive.value?.authors?.get(0)?.get("name");
         database.insertBook(newBook);
     }
 
     fun openBook() {
         viewModelScope.launch {
-            downloadableBookLive.value?.isbn?.let {
+            _downloadableBookLive.value?.isbn?.let {
                 _book.value = database.getBookByIsbn(it)
             }
         }
@@ -225,9 +225,9 @@ class DownloadableBookViewModel(
             withContext(Dispatchers.IO) {
                 val newWish = Wish();
 
-                newWish.isbn = downloadableBookLive.value?.isbn!!;
-                newWish.title = downloadableBookLive.value?.title;
-                newWish.author = downloadableBookLive.value!!.authors?.get(0)?.get("name");
+                newWish.isbn = _downloadableBookLive.value?.isbn!!;
+                newWish.title = _downloadableBookLive.value?.title;
+                newWish.author = _downloadableBookLive.value!!.authors?.get(0)?.get("name");
 
                 database.insertWish(newWish);
                 _wishState.postValue("added");
@@ -238,7 +238,7 @@ class DownloadableBookViewModel(
     fun removeFromWishList() {
         viewModelScope.launch{
             withContext(Dispatchers.IO) {
-                val isbn = downloadableBookLive.value?.isbn;
+                val isbn = _downloadableBookLive.value?.isbn;
 
                 val wish = database.getWishByIsbn(isbn!!);
 
