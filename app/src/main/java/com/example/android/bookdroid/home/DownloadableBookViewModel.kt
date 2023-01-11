@@ -138,15 +138,31 @@ class DownloadableBookViewModel(
             withContext(Dispatchers.IO) {
                 val responseBody = BookApi.retrofitService.downloadFile("https://archive.org/download/" + identifier + "/" + identifier + ".pdf").body();
                 if (responseBody != null) {
-                    val filePath = downloadableBookLive.value?.let { generateFilePath(it) }
+                    val filePath = downloadableBook?.let { generateFilePath(it) }
                     filePath?.let { saveFile(responseBody, it) }
                     filePath?.let { insertBook(it) }
-                    removeFromWishList();
+
+                    if (hasWish()) {
+                        removeFromWishList();
+                    }
+
                     _downloadState.postValue("downloaded");
                 } else {
                     _downloadState.postValue("unavailable")
                 }
             }
+        }
+    }
+
+    suspend fun hasWish(): Boolean {
+        val isbn = downloadableBookLive.value?.isbn;
+
+        val wish = database.getWishByIsbn(isbn!!);
+
+        if (wish != null) {
+            return true;
+        } else {
+            return false;
         }
     }
 
