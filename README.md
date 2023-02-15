@@ -1,3 +1,5 @@
+<img src="https://github.com/Orlando17544/Portfolio/blob/main/src/assets/bookDroid.gif" alt="Simplefolio" width="900px" />
+
 # BookDroid
 
 Android application to download free books from the non-profit digital library archive.org.
@@ -6,7 +8,7 @@ Android application to download free books from the non-profit digital library a
 
 Create an application to download books from different categories. The user can manage the books he wants to download (read, update and delete), he also can add the books that are interesting to him in a wishlist. The director of the school wants the app to be able to work offline, so if the student previously downloaded the book, he should read the book when he is offline.  
 
-### Requeriments
+## Requeriments
 
 1. Must have 460 books divided in 23 categories (art, fun, selfhelp, biography, memories, science fiction, fantasy, education, fiction, literature, finannce, investment, history, computing, technology, children, mystery, suspense, romance novel, religion, spirituality, health and lifestyle)
 2. Must have the most downloaded books in archive.org.
@@ -27,8 +29,6 @@ Create an application to download books from different categories. The user can 
 - Moshi
 - Glide
 
-##
-
 ## Install
 
 Just download the app on this [url](https://github.com/Orlando17544/Portfolio/raw/main/bookDroid.apk) and install it in an android phone.
@@ -47,7 +47,3 @@ git clone https://github.com/Orlando17544/BookDroid.git
 3. Open the project
 
 4. Start the app
-
-## Preview
-
-<img src="https://github.com/Orlando17544/Portfolio/blob/main/src/assets/bookDroid.gif" alt="Simplefolio" width="900px" />
