@@ -16,10 +16,6 @@ Create an application to download books from different categories. The user can 
 6. Each book and each bookshelf can be edited.
 7. There is a wishlist to let the user add books without the need to download the book.
 
-## Preview
-
-<img src="https://github.com/Orlando17544/Portfolio/blob/main/src/assets/bookDroid.gif" alt="Simplefolio" width="900px" />
-
 ## Stack
 
 - Android SDK
@@ -51,3 +47,7 @@ git clone https://github.com/Orlando17544/BookDroid.git
 3. Open the project
 
 4. Start the app
+
+## Preview
+
+<img src="https://github.com/Orlando17544/Portfolio/blob/main/src/assets/bookDroid.gif" alt="Simplefolio" width="900px" />
