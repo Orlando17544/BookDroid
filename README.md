@@ -1,5 +1,3 @@
-<img src="https://github.com/Orlando17544/Portfolio/blob/main/src/assets/bookDroid.gif" alt="Simplefolio" width="900px" />
-
 # BookDroid
 
 Android application to download free books from the non-profit digital library archive.org.
@@ -47,3 +45,7 @@ git clone https://github.com/Orlando17544/BookDroid.git
 3. Open the project
 
 4. Start the app
+
+## Preview
+
+<img src="https://github.com/Orlando17544/Portfolio/blob/main/src/assets/bookDroid.gif" alt="Simplefolio" width="900px" />
