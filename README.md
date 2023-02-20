@@ -25,6 +25,7 @@ Create an application to download books from different categories. The user can 
 - RecyclerView
 - Retrofit
 - Moshi
+- OkHttp
 - Glide
 
 ## Install
