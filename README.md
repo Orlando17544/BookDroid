@@ -19,14 +19,20 @@ Create an application to download books from different categories. The user can 
 ## Stack
 
 - Android SDK
-- Kotlin
-- Architecture components (ViewModel, LiveData and DataBinding)
-- Room (SQLite)
+- Kotlin: 1.7.0
+- Architecture components (ViewModel, LiveData and DataBinding): 2.5.1
+- Room (SQLite): 2.4.3
 - RecyclerView
-- Retrofit
-- Moshi
-- OkHttp
-- Glide
+- Retrofit: 2.9.0
+- Moshi: 2.9.0
+- OkHttp: 3.14.9
+- Glide: 4.14.2
+
+## Tools
+
+- Android Studio Chipmunk
+- GitHub 
+- Git 2.30.2
 
 ## Install
 
