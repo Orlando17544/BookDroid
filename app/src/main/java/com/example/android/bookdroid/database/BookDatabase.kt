@@ -23,7 +23,7 @@ abstract class BookDatabase : RoomDatabase() {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         BookDatabase::class.java,
-                        "book_database.db"
+                        "book_database.db.db"
                     )
                         //.fallbackToDestructiveMigration()
                         .createFromAsset("database/book_database.db")
