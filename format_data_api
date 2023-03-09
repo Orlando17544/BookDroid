@@ -1,0 +1,9 @@
+#!/bin/bash
+
+categories=(art biography children\'s_book computing education fantasy fiction finance fun health "history" investment lifestyle literature memories mystery religion romance science_fiction self_help spirituality suspense technology)
+
+for category in "${categories[@]}"; do
+
+	cat data_formatted_${category}.txt | perl -p -e 's/^\("//g' | perl -p -e 's/", .+//g' | perl -p -e 's/^(.)/ISBN:\1/g' | perl -p -e 's/(.)$/\1,/g' | perl -p -e 's/\n//g' | perl -p -e 's/^(.)/api\/books?bibkeys=\1/g' | perl -p -e 's/,$//g' | perl -p -e 's/(.)$/\1&jscmd=data&format=json/g' > data_formatted_api_${category}.txt
+	
+done
