@@ -1,0 +1,9 @@
+#!/bin/bash
+
+categories=(art biography children\'s_book computing education fantasy fiction finance fun health "history" investment lifestyle literature memories mystery religion romance science_fiction self_help spirituality suspense technology)
+
+for category in "${categories[@]}"; do
+
+	cat ids_${category}.txt | tr -s ' ' | perl -p -e 's/^ //g' | perl -p -e 's/^"is_restricted":.+?(?=")//g' | perl -p -e 's/("identifier": ".+?"), ("isbn": ".+?")/\2, \1/g' | perl -p -e 's/^"isbn": //g' | perl -p -e 's/"identifier": //g' | perl -p -e 's/^(.)/(\1/g' | perl -p -e 's/(.)$/\1),/g' > data_formatted_${category}.txt
+	
+done

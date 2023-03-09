@@ -1,0 +1,24 @@
+#!/bin/bash
+
+#categories=(art biography children\'s_book computing education fantasy fiction finance fun health "history" investment lifestyle literature memories mystery religion romance science_fiction self_help spirituality suspense technology)
+
+categories=(stress)
+
+for category in "${categories[@]}"; do
+
+	i=1
+
+	books=0
+	
+	while [[ "$books" -lt 20 ]]; do
+		echo "Page $i in $category with $books books"
+
+		curl "https://openlibrary.org/search.json?subject=${category}&fields=*,availability&page=$i" | jq '.docs' | jq '.[] | {is_restricted: .availability.is_restricted, identifier: .availability.identifier, isbn: .availability.isbn}' | perl -p -e 's/(?<=,)\n/ /g' | grep -Pv '\{|\}' | grep -P '"is_restricted": false' | grep -Pv '"isbn": null' >> ids_${category}.txt
+
+		books="$(cat ids_${category}.txt | wc -l)"
+
+		i=$(( $i + 1 ))
+
+		sleep 3s
+	done
+done
